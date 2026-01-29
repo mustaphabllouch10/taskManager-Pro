@@ -1,0 +1,9 @@
+import { useSelector } from 'react-redux';
+
+export const selectTasks = () => {
+    return useSelector(state => state.tasks.tasks)   ;
+}
+export const selectMembers = () => {
+    return useSelector(state => state.tasks.members)   ;
+}
+
