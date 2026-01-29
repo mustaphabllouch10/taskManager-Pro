@@ -4,8 +4,6 @@ import Header from './ilyas/Header'
 import Analytics from './ilyas/Analytics'
 import NotFound from "./ilyas/NotFound";
 import Footer from "./ilyas/Footer";
-import Header from '../src/ilyas/Header'
-import Analytics from '../src/ilyas/Analytics'
 import Board from './mustapha/board.jsx';
 
 const App = () => {
