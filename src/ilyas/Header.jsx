@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CreateTaskModal from './CreateTaskModal';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   // State to store the search input value
@@ -20,17 +20,15 @@ const Header = () => {
 
         {/* Left section: Logo and Navigation */}
         <div className="header-left">
-          <nav className="nav-links">
-            {/*
-            <Link to="/team" className="nav-item">Team</Link> 
-            <Link to="/analysis" className="nav-item">Analysis</Link>
-            <Link to="/" className="nav-item active">Main Screen</Link>
-            */}
-          </nav>
-
           <div className="logo">
             <h2>TaskPro</h2>
           </div>
+
+          <nav className="nav-links">
+            {/* <Link to="/team" className="nav-item">Team</Link>  */}
+            <Link to="/analysis" className="nav-item">Analysis</Link>
+            {/* <Link to="/" className="nav-item active">Main Screen</Link> */}
+          </nav>
         </div>
         
         {/* Right section: Search bar and New Task button */}
