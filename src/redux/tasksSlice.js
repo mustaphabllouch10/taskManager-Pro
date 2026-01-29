@@ -14,7 +14,7 @@ const initialState = {
       status: "todo",
       assigne: "mustapha bllouch",
       description: "this is a sample task description",
-      priority: "high",
+      priority: "low",
       due: "2026-12-31"
     },
     {
@@ -26,6 +26,33 @@ const initialState = {
       priority: "medium",
       due: "2026-11-30"
     },
+    {
+      id: 3,
+      title: "sample task 3",
+      status: "done",
+      assigne: "ilyas lhouari",
+      description: "this is a sample task description",
+      priority: "medium",
+      due: "2026-11-30"
+    },
+    {
+      id: 4,
+      title: "sample task 4",
+      status: "inreview",
+      assigne: "azzeddine belahnine",
+      description: "this is a sample task description",
+      priority: "high",
+      due: "2026-12-31"
+    },
+    {
+      id: 5,
+      title: "sample task 5",
+      status: "done",
+      assigne: "mustapha bllouch",
+      description: "this is a sample task description",
+      priority: "high",
+      due: "2026-12-31"
+    }
   ]
 };
 

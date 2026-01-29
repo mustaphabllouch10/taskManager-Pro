@@ -1,0 +1,171 @@
+.board{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0px;
+    padding: 5px 0 0 0;
+    background-color: #121212;
+    overflow-x: auto;
+    height: calc(100vh - 67px);
+}
+
+.task-container {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 15px 0 0 0 ;
+    margin: 10px;
+    width: 300px;
+    text-align: left;
+}
+
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-card {
+  background: linear-gradient(180deg, #2a2a2a, #1f1f1f);
+  border-radius: 16px;
+  padding: 18px;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  cursor: grab;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.6);
+}
+
+/* Priority badge */
+.priority {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.priority.high {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.priority.medium {
+  background: rgba(249, 115, 22, 0.2);
+  color: #fb923c;
+}
+
+.priority.low {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+/* Title & description */
+.task-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.task-desc {
+  font-size: 14px;
+  color: #a1a1aa;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+/* Footer */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.due {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+
+/* Avatar */
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #8b5cf6;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+
+.header-tasks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #e5e7eb;
+}
+
+.header-tasks > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Blue dot */
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #3b82f6; /* blue */
+  border-radius: 50%;
+}
+
+.dot.todo {
+  background: #3b82f6;
+}
+
+.dot.inprogress {
+  background: #a855f7;
+}
+
+.dot.done {
+  background: #22c55e;
+}
+
+.dot.inreview {
+  background: #f59e0b;
+}
+
+/* Title */
+.header-tasks p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Counter badge */
+.task-counter {
+  background: #1f1f1f;
+  color: #9ca3af;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+
+
+

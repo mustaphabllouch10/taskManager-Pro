@@ -21,11 +21,12 @@ const Header = () => {
         {/* Left section: Logo and Navigation */}
         <div className="header-left">
           <div className="logo">
-            <h2>TaskPro</h2>
+            <h2>TaskManager Pro</h2>
           </div>
 
           <nav className="nav-links">
             {/* <Link to="/team" className="nav-item">Team</Link>  */}
+            <Link to="/board" className="nav-item">Board</Link>
             <Link to="/analysis" className="nav-item">Analysis</Link>
             {/* <Link to="/" className="nav-item active">Main Screen</Link> */}
           </nav>

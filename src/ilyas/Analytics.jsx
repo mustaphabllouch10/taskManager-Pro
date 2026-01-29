@@ -1,12 +1,14 @@
-import { useSelector } from 'react-redux';
 import { 
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
   BarChart, Bar, XAxis, YAxis, CartesianGrid 
 } from 'recharts';
+import { selectTasks , selectMembers } from "../redux/selectors";
+
 
 const Analytics = () => {
   // Fetch tasks and members from Redux Store
-  const { tasks, members } = useSelector((state) => state.tasks);
+  const tasks = selectTasks();
+  const members = selectMembers();
 
   // --- Statistics Logic ---
   const completedCount = tasks.filter(t => t.status === 'done').length;
