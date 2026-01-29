@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // 1. Define the initial state with real sample data
 const initialState = {
+
+
   members: [
     { id: 1, name: "ilyas lhouari", role: "manager" },
     { id: 2, name: "azzeddine belahnine", role: "designer" },
@@ -22,7 +24,7 @@ const initialState = {
       title: "sample task 2 ",
       status: "inprogress",
       assigne: "ilyas lhouari",
-      description: "this is a sample task description",
+      description: "this is a sample task description  ",
       priority: "medium",
       due: "2026-11-30"
     },
@@ -53,7 +55,9 @@ const initialState = {
       priority: "high",
       due: "2026-12-31"
     }
-  ]
+  ],
+  
+  draggedTask: null,
 };
 
 // 2. Create the slice
@@ -76,10 +80,14 @@ const tasksSlice = createSlice({
     // Action to delete a task
     deleteTask: (state, action) => {
       state.tasks = state.tasks.filter(t => t.id !== action.payload);
+    },
+    //action to set dragged task
+    setDraggedTask: (state , action) => {
+      state.draggedTask = action.payload;
     }
   }
 });
 
 // Export actions and reducer
-export const { addTask, updateTaskStatus, deleteTask } = tasksSlice.actions;
+export const { addTask, updateTaskStatus, deleteTask, setDraggedTask } = tasksSlice.actions;
 export default tasksSlice.reducer;
