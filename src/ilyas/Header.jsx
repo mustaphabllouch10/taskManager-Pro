@@ -20,9 +20,9 @@ const Header = () => {
 
         {/* Left section: Logo and Navigation */}
         <div className="header-left">
-          <div className="logo">
+          <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
             <h2>TaskPro</h2>
-          </div>
+          </Link>
 
           <nav className="nav-links">
             {/* <Link to="/team" className="nav-item">Team</Link>  */}
