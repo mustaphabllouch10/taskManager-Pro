@@ -1,5 +1,9 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
+import Header from './ilyas/Header'
+import Analytics from './ilyas/Analytics'
+import NotFound from "./ilyas/NotFound";
+import Footer from "./ilyas/Footer";
 import Header from '../src/ilyas/Header'
 import Analytics from '../src/ilyas/Analytics'
 import Board from './mustapha/board.jsx';
@@ -11,8 +15,11 @@ const App = () => {
 
       <Routes>
         <Route path="/analysis" element={<Analytics />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/board" element={<Board />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }

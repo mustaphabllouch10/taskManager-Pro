@@ -20,6 +20,9 @@ const Header = () => {
 
         {/* Left section: Logo and Navigation */}
         <div className="header-left">
+          <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+            <h2>TaskPro</h2>
+          </Link>
           <div className="logo">
             <h2>TaskManager Pro</h2>
           </div>
