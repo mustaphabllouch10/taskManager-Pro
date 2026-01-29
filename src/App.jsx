@@ -1,7 +1,9 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
-import Header from '../src/ilyas/Header'
-import Analytics from '../src/ilyas/Analytics'
+import Header from './ilyas/Header'
+import Analytics from './ilyas/Analytics'
+import NotFound from "./ilyas/NotFound";
+import Footer from "./ilyas/Footer";
 
 const App = () => {
   return (
@@ -10,7 +12,10 @@ const App = () => {
 
       <Routes>
         <Route path="/analysis" element={<Analytics />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }
