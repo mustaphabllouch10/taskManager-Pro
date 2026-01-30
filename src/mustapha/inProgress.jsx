@@ -1,4 +1,4 @@
-import { selectTasks , selectMembers , selectDraggedTask } from "../redux/selectors";
+import { selectTasks, selectDraggedTask } from "../redux/selectors";
 import "./taskContainers.css";
 import { FiCalendar } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
@@ -9,70 +9,69 @@ import { setDraggedTask } from "../redux/tasksSlice";
 
 
 
-const InProgress = () => {
-    const dispatch = useDispatch();
-    const tasks = selectTasks(); 
-    const members = selectMembers();
-    const draggedTask = selectDraggedTask();
-   
+const InProgress = ({ getMemberColor }) => {
+  const dispatch = useDispatch();
+  const tasks = selectTasks();
+  const draggedTask = selectDraggedTask();
 
-    const inprgressTasks = tasks.filter(task => task.status === "inprogress");
-    
+
+  const inprgressTasks = tasks.filter(task => task.status === "inprogress");
+
   return (
-    <div className="task-container" 
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={() => dispatch(updateTaskStatus({status: "inprogress", id: draggedTask}))}
-        >
-        <div className="header-tasks">
-            <div>
-                <span className="dot inprogress"></span>
-                <p>In Progress</p>
+    <div className="task-container"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={() => dispatch(updateTaskStatus({ status: "inprogress", id: draggedTask }))}
+    >
+      <div className="header-tasks">
+        <div>
+          <span className="dot inprogress"></span>
+          <p>In Progress</p>
+        </div>
+
+        <span className="task-counter">{inprgressTasks.length}</span>
+      </div>
+      <div className="tasks">
+        {inprgressTasks.map(task => (
+          <div key={task.id} className="task-card" draggable
+            onDragStart={() => dispatch(setDraggedTask(task.id))}
+            onDragEnd={() => dispatch(setDraggedTask(null))}
+          >
+
+            <span className={`priority ${task.priority}`}>
+              {task.priority}
+            </span>
+            <button
+              className="delete-btn"
+              onClick={() => dispatch(deleteTask(task.id))}
+            >
+              <FiTrash2 size={16} />
+            </button>
+
+            <h4 className="task-title">{task.title}</h4>
+            <p className="task-desc">{task.description}</p>
+
+            <div className="task-footer">
+              <div className="due">
+                <FiCalendar size={14} />
+                <span>{task.due}</span>
+              </div>
+
+              <div className="avatar" style={{ backgroundColor:getMemberColor(task.assigne) }}>
+                {task.assigne
+                  .split(" ")
+                  .map(n => n[0])
+                  .join("")
+                  .toUpperCase()}
+              </div>
             </div>
-            
-            <span className="task-counter">{inprgressTasks.length}</span>
-        </div>
-        <div className="tasks">
-  {inprgressTasks.map(task => (
-    <div key={task.id} className="task-card" draggable 
-    onDragStart={() => dispatch(setDraggedTask(task.id))}
-    onDragEnd={() => dispatch(setDraggedTask(null))}
-    >
-      
-      <span className={`priority ${task.priority}`}>
-        {task.priority}
-      </span>
-      <button
-            className="delete-btn"
-            onClick={() => dispatch(deleteTask(task.id))}
-    >
-                  <FiTrash2 size={16} />
-    </button>
 
-      <h4 className="task-title">{task.title}</h4>
-      <p className="task-desc">{task.description}</p>
-
-      <div className="task-footer">
-        <div className="due">
-            <FiCalendar size={14} />
-            <span>{task.due}</span>
-        </div>
-
-        <div className="avatar">
-          {task.assigne
-            .split(" ")
-            .map(n => n[0])
-            .join("")
-            .toUpperCase()}
-        </div>
+          </div>
+        ))}
       </div>
 
     </div>
-  ))}
-</div>
 
-    </div>
-
-);
+  );
 }
 
 export default InProgress;
