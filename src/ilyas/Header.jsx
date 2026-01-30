@@ -26,10 +26,9 @@ const Header = () => {
           
 
           <nav className="nav-links">
-            {/* <Link to="/team" className="nav-item">Team</Link>  */}
             <Link to="/board" className="nav-item">Board</Link>
             <Link to="/analysis" className="nav-item">Analysis</Link>
-            {/* <Link to="/" className="nav-item active">Main Screen</Link> */}
+            <Link to="/team" className="nav-item">Team</Link> 
           </nav>
         </div>
         
