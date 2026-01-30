@@ -6,4 +6,6 @@ export const selectTasks = () => {
 export const selectMembers = () => {
     return useSelector(state => state.tasks.members)   ;
 }
-
+export const selectDraggedTask = () => {
+    return useSelector(state => state.tasks.draggedTask)   ;
+}
