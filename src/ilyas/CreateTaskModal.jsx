@@ -29,6 +29,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
   // 3. Submit Function
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.title) return;
 
     dispatch(addTask(formData));
 
@@ -140,7 +141,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
               onChange={handleChange}
               className="dark-input"
               placeholder="Add a description..."
-              rows="4">
+            >
             </textarea>
           </div>
 

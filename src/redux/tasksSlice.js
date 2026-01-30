@@ -4,9 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   nextTaskId: 6,
   members: [
-    { id: 1, name: "ilyas lhouari", role: "manager" },
-    { id: 2, name: "azzeddine belahnine", role: "designer" },
-    { id: 3, name: "mustapha bllouch", role: "developer" },
+    { id: 1, name: "ilyas lhouari", role: "manager", color: "#3b82f6" },
+    { id: 2, name: "azzeddine belahnine", role: "designer", color: "#d946ef" },
+    { id: 3, name: "mustapha bllouch", role: "developer", color: "#f97316" },
   ],
   tasks: [
     {
