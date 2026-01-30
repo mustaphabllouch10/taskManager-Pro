@@ -1,0 +1,101 @@
+.team-container {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  padding: 60px 40px;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.team-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.member-card {
+  background-color: #161616;
+  border: 1px solid #262626;
+  border-radius: 24px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 380px;
+  flex: 1 1 380px;
+}
+
+.avatar-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 22px;
+  position: relative;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  background-color: #22c55e;
+  border: 3px solid #161616;
+  border-radius: 50%;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.member-role {
+  color: #737373;
+  font-size: 15px;
+  margin: 0 0 20px 0;
+  text-transform: capitalize;
+}
+
+.stats-container {
+  display: flex;
+  gap: 35px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.stat-label {
+  color: #525252;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.text-green {
+  color: #22c55e;
+}
