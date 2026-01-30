@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // 1. Define the initial state with real sample data
 const initialState = {
+  nextTaskId: 6,
   members: [
     { id: 1, name: "ilyas lhouari", role: "manager" },
     { id: 2, name: "azzeddine belahnine", role: "designer" },
@@ -63,7 +64,11 @@ const tasksSlice = createSlice({
   reducers: {
     // Action to add a new task
     addTask: (state, action) => {
-      state.tasks.push(action.payload);
+      state.tasks.push({
+        ...action.payload,
+        id: state.nextTaskId,
+      });
+      state.nextTaskId++;
     },
     // Action to update task status
     updateTaskStatus: (state, action) => {
