@@ -1,18 +1,10 @@
-import React from 'react';
 import './team.css'; 
+import { selectMembers, selectTasks } from '../redux/selectors';
 
 const Team = () => {
-  const members = [
-    { id: 1, name: "mustapha bllouch", role: "developer" },
-    { id: 2, name: "ahmed elghazali", role: "designer" },
-    { id: 3, name: "sara benali", role: "manager" }
-  ];
-
-  const tasks = [
-    { id: 1, status: "todo", assigne: "mustapha bllouch" },
-    { id: 2, status: "inprogress", assigne: "ahmed elghazali" },
-    { id: 3, status: "done", assigne: "sara benali" }
-  ];
+  // Fetch members and tasks from selectors
+  const members = selectMembers();
+  const tasks = selectTasks();
 
   return (
     <div className="team-container">
@@ -26,7 +18,7 @@ const Team = () => {
 
           return (
             <div key={member.id} className="member-card">
-              <div className="avatar-wrapper">
+              <div className="avatar-wrapper" style={{ backgroundColor:(member.color) }}>
                 {initials}
                 <div className="status-dot"></div>
               </div>
