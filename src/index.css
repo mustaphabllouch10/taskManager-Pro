@@ -1,59 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  
 }
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
 
+/* ================= HEADER ================= */
 
-/* Header.css */
-/* Container for the whole header */
 .header-container {
   display: flex;
-  justify-content: space-between; /* Space out Left and Right sections */
+  justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  height: 70px; /* Fixed height */
-  background-color: #121212; /* Dark background matching the app */
-  border-bottom: 1px solid #1f1f1f; /* Subtle border line */
-  position: sticky; /* Keeps header visible when scrolling */
+  height: 70px;
+  background-color: #121212;
+  border-bottom: 1px solid #1f1f1f;
+  position: sticky;
   top: 0;
-  z-index: 100; /* Stays above content */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-/* --- Left Section (Logo + Nav) --- */
 .header-left {
   display: flex;
   align-items: center;
-  gap: 40px; /* Space between Logo and Menu */
+  gap: 40px;
 }
 
-/* Styling the Logo */
 .logo h2 {
-  margin: 0;
   font-size: 1.5rem;
   font-weight: 800;
-  /* Modern Gradient Text Effect */
   background: linear-gradient(90deg, #6366f1, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
 }
 
-/* Navigation Links */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -61,254 +50,173 @@ body {
 
 .nav-item {
   text-decoration: none;
-  color: #a0a0a0; /* Gray text */
+  color: #a0a0a0;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
-.nav-item:hover, .nav-item.active {
-  color: #ffffff; /* White on hover */
+.nav-item:hover,
+.nav-item.active {
+  color: #fff;
 }
 
-/* --- Right Section (Search + Button) --- */
 .header-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* Search Box Styling */
 .search-box input {
   background-color: #1e1e1e;
   border: 1px solid #333;
-  color: #ffffff;
+  color: #fff;
   padding: 10px 16px;
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px;
   width: 250px;
   outline: none;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.search-box input::placeholder {
-  color: #666;
 }
 
 .search-box input:focus {
-  border-color: #6366f1; /* Purple border on click */
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
 }
 
-/* New Task Button Styling */
 .btn-new-task {
-  background-color: #6366f1; /* Primary Purple */
+  background-color: #6366f1;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s;
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: .2s;
 }
 
 .btn-new-task:hover {
-  background-color: #4f46e5; /* Darker purple on hover */
-  transform: translateY(-2px); /* Slight lift effect */
+  background-color: #4f46e5;
+  transform: translateY(-2px);
 }
 
-.btn-new-task:active {
-  transform: translateY(0);
+@media (max-width:768px){
+  .search-box input{display:none;}
+  .header-left{gap:20px;}
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .search-box input {
-    display: none; /* Hide search on small screens if needed */
-  }
-  .header-left {
-    gap: 20px;
-  }
-}
+/* ================= MODAL ================= */
 
-/* ----------------- */
-
-/* CreateTaskModal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  inset: 0;
+  background: rgba(0,0,0,.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(2px); /* Blur effect for modern look */
+  backdrop-filter: blur(4px);
 }
 
-/* Main Modal Card */
 .modal-content {
-  background-color: #1e1e1e; /* Dark background like the image */
-  color: #ffffff;
+  background: #1a1a1a;
+  color: white;
   padding: 30px;
   border-radius: 12px;
-  width: 500px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  font-family: 'Inter', sans-serif;
+  width: 650px;
+  border: 1px solid #333;
+  box-shadow: 0 20px 50px rgba(0,0,0,.5);
 }
 
-/* Title Header */
 .modal-title {
-  margin-top: 0;
   margin-bottom: 25px;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* Big Title Input Style */
 .input-title {
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid #333;
-  color: white;
-  font-size: 1.1rem;
-  padding: 10px 0;
-  margin-bottom: 15px;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: #e0e0e0;
   outline: none;
 }
 
-.input-title::placeholder {
-  color: #666;
-}
-
-/* Layout for rows (Status/Priority, etc.) */
 .form-row {
   display: flex;
-  gap: 20px; /* Space between columns */
-  margin-bottom: 15px;
+  gap: 25px;
+  margin-bottom: 20px;
 }
 
-.half-width {
-  flex: 1; /* Takes 50% width each */
-}
+.half-width{flex:1;}
 
-/* Labels */
-label {
-  display: block;
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 8px;
-}
-
-/* Styling for Inputs and Selects (Dark Theme) */
 .dark-input {
   width: 100%;
-  background-color: #2d2d2d; /* Slightly lighter than bg */
-  border: 1px solid #444;
+  background: #0f0f0f;
+  border: 1px solid #333;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 6px;
-  outline: none;
-  font-size: 0.9rem;
 }
 
-.dark-input:focus {
-  border-color: #6366f1; /* Purple focus border */
+textarea.dark-input {
+  resize: none;
+  height: 120px;
 }
 
-/* Buttons Area */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 25px;
-  padding-top: 15px;
-  border-top: 1px solid #333;
+  gap: 15px;
+  margin-top: 30px;
 }
 
-/* Cancel Button */
+.btn-create,
+.btn-cancel {
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-create {
+  background: #6366f1;
+  color: white;
+  border: none;
+}
+
+.btn-create:hover{background:#4f46e5;}
+
 .btn-cancel {
   background: transparent;
   color: #ccc;
-  border: 1px solid #444;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
+  border: 1px solid #333;
 }
 
-.btn-cancel:hover {
-  background: #333;
-  color: white;
-}
+/* ================= ANALYTICS ================= */
 
-/* Create Task Button (Purple) */
-.btn-create {
-  background-color: #6366f1; /* Purple color from image */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.btn-create:hover {
-  background-color: #4f46e5; /* Darker purple on hover */
-}
-
-/* --------------------------- */
-
-/* Analytics */
 .analytics-container {
   padding: 2rem;
-  background-color: #121212; /* Very dark background for the page */
+  background: #121212;
   min-height: 100vh;
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  color: white;
 }
 
-.page-title {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  font-weight: 700;
-}
-
-/* --- Stats Grid (Top Row) --- */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
   gap: 20px;
   margin-bottom: 30px;
 }
 
 .stat-card {
-  background-color: #1e1e1e; /* Dark Card Background */
+  background: #1e1e1e;
   padding: 20px;
   border-radius: 12px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.stat-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.stat-label {
-  color: #a0a0a0;
-  font-size: 0.9rem;
 }
 
 .stat-number {
@@ -316,124 +224,27 @@ label {
   font-weight: bold;
 }
 
-/* Icons Styles */
-.stat-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.icon-green {
-  background-color: rgba(46, 204, 113, 0.1);
-  color: #2ecc71;
-  border: 1px solid #2ecc71;
-}
-
-.icon-blue {
-  background-color: rgba(52, 152, 219, 0.1);
-  color: #3498db;
-  border: 1px solid #3498db;
-}
-
-.icon-red {
-  background-color: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
-  border: 1px solid #e74c3c;
-}
-
-/* --- Charts Grid (Bottom Row) --- */
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
   gap: 20px;
 }
 
 .chart-card {
-  background-color: #1e1e1e;
+  background: #1e1e1e;
   padding: 20px;
   border-radius: 12px;
-  min-height: 300px; /* Height of the chart box */
 }
 
-.chart-card h3 {
-  font-size: 1rem;
-  color: #a0a0a0;
-  margin-bottom: 20px;
-  font-weight: normal;
-}
-
-/* Styling for the Team Workload Bar (CSS only) */
-.bar-chart-container {
-  display: flex;
-  height: 200px;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.chart-y-axis {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  color: #666;
-  font-size: 0.8rem;
-  padding-right: 10px;
-}
-
-.chart-bars {
-  flex-grow: 1;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  border-bottom: 1px solid #333;
-}
-
-.bar-wrapper {
-  width: 60px; /* Width of the blue bar */
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  margin-left: 20px;
-}
-
-.bar-fill {
-  width: 100%;
-  background-color: #6366f1; /* The purple/blue color from image */
-  border-radius: 4px 4px 0 0;
-  transition: height 0.3s ease;
-}
-
-/* Placeholder for empty chart */
-.chart-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-  color: #666;
-}
-.empty-state-circle {
-    width: 100px;
-    height: 100px;
-    border: 10px solid #333;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-/* ----------------------- */
+/* ================= 404 ================= */
 
 .not-found-container {
-  height: 80vh; /* Takes most of the screen height */
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #121212; /* Dark background */
+  background: #121212;
   color: white;
   text-align: center;
 }
@@ -441,314 +252,48 @@ label {
 .error-code {
   font-size: 6rem;
   font-weight: 900;
-  color: #6366f1; /* Purple color */
-  margin: 0;
-  line-height: 1;
-}
-
-.error-message {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.error-description {
-  color: #888;
-  margin-bottom: 30px;
-  max-width: 400px;
+  color: #6366f1;
 }
 
 .btn-home {
-  background-color: #6366f1;
+  background: #6366f1;
   color: white;
   padding: 12px 24px;
   border-radius: 6px;
-  text-decoration: none; /* Removes underline from Link */
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.btn-home:hover {
-  background-color: #4f46e5;
-}
-
-/* ----------------- */
-
-.footer-container {
-  background-color: #0d0d0d; /* Darker than the body background */
-  color: #a0a0a0;
-  padding-top: 3rem;
-  border-top: 1px solid #1e1e1e;
-  margin-top: auto; /* Pushes footer to bottom if content is short */
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  margin-bottom: 2rem;
-}
-
-/* Section 1 */
-.footer-logo {
-  color: white;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-.footer-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-/* Section 2 */
-.footer-section h4 {
-  color: white;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: #a0a0a0;
   text-decoration: none;
-  transition: color 0.3s;
 }
 
-.footer-links a:hover {
-  color: #6366f1; /* Purple accent color */
-  padding-left: 5px; /* Small animation effect */
-}
+.btn-home:hover{background:#4f46e5;}
 
-/* Section 3 */
-.footer-section p {
-  margin: 5px 0;
-  font-size: 0.9rem;
-}
+/* ================= FOOTER ================= */
 
-.footer-team {
-  margin-top: 15px;
-  background: #1e1e1e;
-  padding: 8px 15px;
-  border-radius: 6px;
-  display: inline-block;
-  color: white;
-  font-size: 0.85rem;
-}
-
-/* Bottom Copyright */
-.footer-bottom {
-  background-color: #000000;
-  text-align: center;
-  padding: 1.5rem 0;
-  font-size: 0.8rem;
-  border-top: 1px solid #1e1e1e;
-}
-
-/* Main Footer Background */
 .footer-container {
-  background-color: #050505; /* Deep black almost */
+  background: #050505;
   color: #888;
   padding-top: 4rem;
   border-top: 1px solid #1f1f1f;
-  margin-top: auto;
-  font-family: 'Inter', sans-serif;
 }
 
 .footer-content {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  margin: auto;
+  padding: 0 2rem 3rem;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr; /* Layout columns */
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
   gap: 40px;
-  padding-bottom: 3rem;
-}
-
-/* Brand Column */
-.brand-logo {
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin-top: 0;
-  letter-spacing: -0.5px;
-}
-
-.brand-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  max-width: 300px;
-}
-
-.app-badges {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-store {
-  background: #1a1a1a;
-  color: white;
-  border: 1px solid #333;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-store:hover {
-  background: #333;
-  border-color: #555;
-}
-
-/* Links Columns */
-.footer-links-col h4, 
-.footer-newsletter h4 {
-  color: #fff;
-  font-size: 0.95rem;
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.footer-links-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links-col li {
-  margin-bottom: 12px;
-}
-
-.footer-links-col a {
-  color: #888;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s;
 }
 
 .footer-links-col a:hover {
-  color: #6366f1; /* Brand color on hover */
+  color: #6366f1;
 }
 
-/* Badge for "Hiring" */
-.hiring-badge {
-  background-color: #6366f1;
-  color: white;
-  font-size: 0.7rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 8px;
-}
-
-/* Newsletter Section */
-.footer-newsletter p {
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.newsletter-form input {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  padding: 10px;
-  border-radius: 6px;
-  color: white;
-  width: 100%;
-  outline: none;
-}
-
-.newsletter-form input:focus {
-  border-color: #6366f1;
-}
-
-.newsletter-form button {
-  background: #6366f1;
-  color: white;
-  border: none;
-  padding: 0 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.social-icons {
-  display: flex;
-  gap: 15px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.social-icons span:hover {
-  color: white;
-}
-
-/* Footer Bottom (Copyright) */
 .footer-bottom {
   border-top: 1px solid #1f1f1f;
   padding: 1.5rem 0;
-  background-color: #000;
+  background: #000;
+  text-align: center;
 }
 
-.bottom-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
+@media (max-width:768px){
+  .footer-content{grid-template-columns:1fr;}
 }
-
-.bottom-links {
-  display: flex;
-  gap: 20px;
-}
-
-.bottom-links a {
-  color: #666;
-  text-decoration: none;
-}
-
-.bottom-links a:hover {
-  color: white;
-}
-
-/* Responsive Mobile */
-@media (max-width: 768px) {
-  .footer-content {
-    grid-template-columns: 1fr; /* Stack everything on mobile */
-    gap: 30px;
-  }
-  
-  .bottom-content {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-}
-
-
-
-
-/* ============================================================================================= */
