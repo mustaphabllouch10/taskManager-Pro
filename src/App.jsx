@@ -6,6 +6,7 @@ import NotFound from "./ilyas/NotFound";
 import Footer from "./ilyas/Footer";
 import Board from './mustapha/board.jsx';
 import Team  from './azzedine/team.jsx'
+import LandingPage from './mustapha/landingPage/landingPage.jsx';
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Board />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/board" element={<Board />} />
         <Route path="/analysis" element={<Analytics />} />
         <Route path="/team" element={<Team />} />

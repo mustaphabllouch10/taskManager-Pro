@@ -32,6 +32,15 @@ body {
   display: flex;
   align-items: center;
   gap: 40px;
+  transition: all 0.3s ease;
+}
+
+.header-left-LandingPage {
+  display: flex;
+  align-items: center;
+  gap: 50%;
+  justify-content: space-between;
+  transition: all 0.3s ease;
 }
 
 .logo h2 {
@@ -65,6 +74,12 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
+  transition: all 0.7s ease;
+}
+
+.header-right-LandingPage {
+  opacity: 0;
+  transition: all 0s ease;
 }
 
 .search-box input {
@@ -84,7 +99,7 @@ body {
 }
 
 .btn-new-task {
-  background-color: #6366f1;
+  background-color: #8A5CF4;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -98,7 +113,7 @@ body {
 }
 
 .btn-new-task:hover {
-  background-color: #4f46e5;
+  background-color: #6238c5;
   transform: translateY(-2px);
 }
 
@@ -252,18 +267,30 @@ textarea.dark-input {
 .error-code {
   font-size: 6rem;
   font-weight: 900;
-  color: #6366f1;
+  color: #8A5CF4;
+}
+
+.error-message {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.error-description {
+  color: #bbb;
+  max-width: 500px;
+  margin-bottom: 30px;
 }
 
 .btn-home {
-  background: #6366f1;
+  background: #8A5CF4;
   color: white;
   padding: 12px 24px;
   border-radius: 6px;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.btn-home:hover{background:#4f46e5;}
+.btn-home:hover{background:#6d43cf;}
 
 /* ================= FOOTER ================= */
 
@@ -296,4 +323,9 @@ textarea.dark-input {
 
 @media (max-width:768px){
   .footer-content{grid-template-columns:1fr;}
+}
+
+.logo-image {
+  width: 250px;
+  height: auto;
 }

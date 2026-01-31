@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import CreateTaskModal from './CreateTaskModal';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import "../../public/taskmanager-pro-logo.png";
 
 const Header = () => {
   // State to store the search input value
   const [searchTerm, setSearchTerm] = useState('');
+  const location = useLocation();
+  const isLandingPage = location.pathname === '/' ;
 
   // control the modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,13 +23,15 @@ const Header = () => {
       <header className="header-container">
 
         {/* Left section: Logo and Navigation */}
-        <div className="header-left">
+        <div className={isLandingPage ? "header-left-LandingPage" : "header-left"}>
           <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
-            <h2>TaskManager Pro</h2>
+            <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
+            
           </Link>
           
 
           <nav className="nav-links">
+            <Link to="/" className="nav-item">Home</Link>
             <Link to="/board" className="nav-item">Board</Link>
             <Link to="/analysis" className="nav-item">Analysis</Link>
             <Link to="/team" className="nav-item">Team</Link> 
@@ -33,7 +39,7 @@ const Header = () => {
         </div>
         
         {/* Right section: Search bar and New Task button */}
-        <div className="header-right">
+        <div className={isLandingPage ? "header-right-LandingPage" : "header-right"}>
 
           {/* Search input field */}
           <div className="search-box">
