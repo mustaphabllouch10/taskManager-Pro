@@ -17,6 +17,7 @@
   justify-content: center;
   color : white;
   padding-top: 10%;
+  animation: intro 1s ease-out forwards;
 }
 
 .dot-grid-bg{
@@ -30,9 +31,23 @@
 }
 
 .hero-description{
+    animation: intro 1s ease-out forwards;
     font-size: 21px;
     margin-top: 20px;
     text-align: center;
     max-width: 600px;
     color: #b5b5b5;
 }
+
+@keyframes intro {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

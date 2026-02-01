@@ -80,6 +80,7 @@ body {
 .header-right-LandingPage {
   opacity: 0;
   transition: all 0s ease;
+  pointer-events: none;
 }
 
 .search-box input {

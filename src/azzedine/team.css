@@ -27,6 +27,7 @@
   align-items: center;
   gap: 24px;
   min-width: 380px;
+  max-width: 550px;
   flex: 1 1 380px;
 }
 
