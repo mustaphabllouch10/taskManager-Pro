@@ -57,6 +57,8 @@ const initialState = {
   ],
   
   draggedTask: null,
+
+  searchTerm: '',
 };
 
 // 2. Create the slice
@@ -87,10 +89,15 @@ const tasksSlice = createSlice({
     //action to set dragged task
     setDraggedTask: (state , action) => {
       state.draggedTask = action.payload;
-    }
+    },
+
+    // Action to set search term
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
   }
 });
 
 // Export actions and reducer
-export const { addTask, updateTaskStatus, deleteTask, setDraggedTask } = tasksSlice.actions;
+export const { addTask, updateTaskStatus, deleteTask, setDraggedTask, setSearchTerm } = tasksSlice.actions;
 export default tasksSlice.reducer;
