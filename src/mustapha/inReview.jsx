@@ -1,4 +1,4 @@
-import { selectTasks, selectDraggedTask } from "../redux/selectors";
+import { selectDraggedTask } from "../redux/selectors";
 import "./taskContainers.css";
 import { FiCalendar } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
@@ -10,13 +10,9 @@ import { setDraggedTask } from "../redux/tasksSlice";
 
 
 
-const InReview = ({ getMemberColor }) => {
+const InReview = ({ tasks, getMemberColor }) => {
   const dispatch = useDispatch();
-  const tasks = selectTasks();
   const draggedTask = selectDraggedTask();
-
-
-  const inreviewTasks = tasks.filter(task => task.status === "inreview");
 
   return (
     <div className="task-container"
@@ -29,10 +25,10 @@ const InReview = ({ getMemberColor }) => {
           <p>In Review</p>
         </div>
 
-        <span className="task-counter">{inreviewTasks.length}</span>
+        <span className="task-counter">{tasks.length}</span>
       </div>
       <div className="tasks">
-        {inreviewTasks.map(task => (
+        {tasks.map(task => (
           <div key={task.id} className="task-card" draggable
             onDragStart={() => dispatch(setDraggedTask(task.id))}
             onDragEnd={() => dispatch(setDraggedTask(null))}

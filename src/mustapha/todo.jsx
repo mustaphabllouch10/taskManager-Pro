@@ -1,4 +1,4 @@
-import { selectTasks, selectDraggedTask } from "../redux/selectors";
+import { selectDraggedTask } from "../redux/selectors";
 import "./taskContainers.css";
 import { FiCalendar } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
@@ -8,12 +8,9 @@ import { setDraggedTask } from "../redux/tasksSlice";
 
 
 
-const Todo = ({ getMemberColor }) => {
+const Todo = ({ tasks, getMemberColor }) => {
   const dispatch = useDispatch();
-  const tasks = selectTasks();
   const draggedTask = selectDraggedTask();
-
-  const todoTasks = tasks.filter(task => task.status === "todo");
 
   return (
     <div className="task-container"
@@ -26,11 +23,11 @@ const Todo = ({ getMemberColor }) => {
           <p>To Do</p>
         </div>
 
-        <span className="task-counter">{todoTasks.length}</span>
+        <span className="task-counter">{tasks.length}</span>
       </div>
       <div className="tasks">
 
-        {todoTasks.map(task => (
+        {tasks.map(task => (
           <div key={task.id} className="task-card" draggable
             onDragStart={() => dispatch(setDraggedTask(task.id))}
             onDragEnd={() => dispatch(setDraggedTask(null))}

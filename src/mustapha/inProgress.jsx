@@ -1,4 +1,4 @@
-import { selectTasks, selectDraggedTask } from "../redux/selectors";
+import { selectDraggedTask } from "../redux/selectors";
 import "./taskContainers.css";
 import { FiCalendar } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
@@ -9,13 +9,9 @@ import { setDraggedTask } from "../redux/tasksSlice";
 
 
 
-const InProgress = ({ getMemberColor }) => {
+const InProgress = ({ tasks, getMemberColor }) => {
   const dispatch = useDispatch();
-  const tasks = selectTasks();
   const draggedTask = selectDraggedTask();
-
-
-  const inprgressTasks = tasks.filter(task => task.status === "inprogress");
 
   return (
     <div className="task-container"
@@ -28,10 +24,10 @@ const InProgress = ({ getMemberColor }) => {
           <p>In Progress</p>
         </div>
 
-        <span className="task-counter">{inprgressTasks.length}</span>
+        <span className="task-counter">{tasks.length}</span>
       </div>
       <div className="tasks">
-        {inprgressTasks.map(task => (
+        {tasks.map(task => (
           <div key={task.id} className="task-card" draggable
             onDragStart={() => dispatch(setDraggedTask(task.id))}
             onDragEnd={() => dispatch(setDraggedTask(null))}

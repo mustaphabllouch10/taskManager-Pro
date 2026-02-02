@@ -1,4 +1,4 @@
-import { selectTasks, selectDraggedTask } from "../redux/selectors";
+import { selectDraggedTask } from "../redux/selectors";
 import "./taskContainers.css";
 import { FiCalendar } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
@@ -8,16 +8,9 @@ import { updateTaskStatus } from "../redux/tasksSlice";
 import { setDraggedTask } from "../redux/tasksSlice";
 
 
-
-
-
-const Done = ({ getMemberColor }) => {
+const Done = ({ tasks, getMemberColor }) => {
   const dispatch = useDispatch();
-  const tasks = selectTasks();
   const draggedTask = selectDraggedTask();
-
-
-  const doneTasks = tasks.filter(task => task.status === "done");
 
   return (
     <div className="task-container"
@@ -30,10 +23,10 @@ const Done = ({ getMemberColor }) => {
           <p>Done</p>
         </div>
 
-        <span className="task-counter">{doneTasks.length}</span>
+        <span className="task-counter">{tasks.length}</span>
       </div>
       <div className="tasks">
-        {doneTasks.map(task => (
+        {tasks.map(task => (
           <div key={task.id} className="task-card" draggable
             onDragStart={() => dispatch(setDraggedTask(task.id))}
             onDragEnd={() => dispatch(setDraggedTask(null))}
@@ -58,7 +51,7 @@ const Done = ({ getMemberColor }) => {
                 <span>{task.due}</span>
               </div>
 
-              <div className="avatar" style={{ backgroundColor:getMemberColor(task.assigne) }}>
+              <div className="avatar" style={{ backgroundColor: getMemberColor(task.assigne) }}>
                 {task.assigne
                   .split(" ")
                   .map(n => n[0])
