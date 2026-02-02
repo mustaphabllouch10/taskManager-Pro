@@ -1,22 +1,25 @@
-.board{
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0px;
-    padding: 5px 0 0 0;
-    background-color: #121212;
-    overflow-x: auto;
-    height: calc(100vh - 67px);
+/**
+ * Board and task card styles - columns, cards, drag-and-drop, priority badges.
+ */
+.board {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0px;
+  padding: 5px 0 0 0;
+  background-color: #121212;
+  overflow-x: auto;
+  height: calc(100vh - 67px);
 }
 
 .task-container {
-    border: 1px solid;
-    border-radius: 5px;
-    margin: 10px;
-    width: 300px;
-    text-align: left;
-    
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 10px;
+  width: 300px;
+  text-align: left;
+
 }
 
 
@@ -24,7 +27,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: calc(100vh - 150px) ;
+  height: calc(100vh - 150px);
   overflow-y: auto;
   padding-right: 3.5px;
 }
@@ -34,14 +37,14 @@
   border-radius: 16px;
   padding: 18px;
   color: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   cursor: grab;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .task-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
 }
 
 .delete-btn {
@@ -61,7 +64,8 @@
 }
 
 .delete-btn:hover {
-  color: #ef4444; /* red */
+  color: #ef4444;
+  /* red */
 }
 
 /* Priority badge */
@@ -139,11 +143,11 @@
   align-items: center;
   padding: 12px 14px;
   color: #e5e7eb;
-  flex-shrink: 0;         
+  flex-shrink: 0;
   position: sticky;
-  top: 0;                 
+  top: 0;
   z-index: 10;
-  background: #121212;  
+  background: #121212;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -169,7 +173,7 @@
   background: #888;
 }
 
-.header-tasks > div {
+.header-tasks>div {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -179,7 +183,8 @@
 .dot {
   width: 8px;
   height: 8px;
-  background: #3b82f6; /* blue */
+  background: #3b82f6;
+  /* blue */
   border-radius: 50%;
 }
 
@@ -214,7 +219,3 @@
   padding: 2px 8px;
   border-radius: 6px;
 }
-
-
-
-

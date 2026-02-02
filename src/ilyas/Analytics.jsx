@@ -1,28 +1,30 @@
-import { 
+/**
+ * Analytics dashboard - stats cards and charts.
+ * Pie chart: task status distribution. Bar chart: workload per team member.
+ */
+import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid
 } from 'recharts';
-import { selectTasks , selectMembers } from "../redux/selectors";
-
+import { useSelector } from 'react-redux';
+import { selectTasks, selectMembers } from "../redux/selectors";
 
 const Analytics = () => {
-  // Fetch tasks and members from Redux Store
-  const tasks = selectTasks();
-  const members = selectMembers();
+  const tasks = useSelector(selectTasks);
+  const members = useSelector(selectMembers);
 
-  // --- Statistics Logic ---
   const completedCount = tasks.filter(t => t.status === 'done').length;
   const inProgressCount = tasks.filter(t => t.status === 'inprogress').length;
   const overdueCount = 0;
 
-  // --- Data Preparation for Charts ---
+  // Pie chart data - hide empty slices for cleaner display
   const statusData = [
     { name: 'To Do', value: tasks.filter(t => t.status === 'todo').length, color: '#FFBB28' }, // Yellow
     { name: 'In Progress', value: tasks.filter(t => t.status === 'inprogress').length, color: '#3498db' }, // Blue
     { name: 'Done', value: tasks.filter(t => t.status === 'done').length, color: '#2ecc71' } // Green
-  ].filter(item => item.value > 0); // Hide empty slices
+  ].filter(item => item.value > 0);
 
-  // Calculate how many tasks each member has
+  // Bar chart: tasks assigned per member
   const workloadData = members.map(member => {
     const count = tasks.filter(t => t.assigne === member.name).length;
     return {

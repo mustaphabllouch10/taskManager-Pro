@@ -1,9 +1,12 @@
-'use client';
+/**
+ * Interactive dot grid - canvas-based.
+ * Dots glow near cursor, react to fast movement (inertia), and ripple on click.
+ */
 import { useRef, useEffect, useCallback, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
-import './DotGrid.css';
+import './dotGrid.css';
 
 gsap.registerPlugin(InertiaPlugin);
 
@@ -60,6 +63,7 @@ const DotGrid = ({
   const baseRgb = useMemo(() => hexToRgb(baseColor), [baseColor]);
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
 
+  // Path2D for efficient canvas drawing. Null in SSR.
   const circlePath = useMemo(() => {
     if (typeof window === 'undefined' || !window.Path2D) return null;
 
@@ -68,6 +72,7 @@ const DotGrid = ({
     return p;
   }, [dotSize]);
 
+  // Rebuild dot positions on resize. Uses DPR for sharp canvas on retina.
   const buildGrid = useCallback(() => {
     const wrap = wrapperRef.current;
     const canvas = canvasRef.current;
@@ -129,6 +134,7 @@ const DotGrid = ({
         const dy = dot.cy - py;
         const dsq = dx * dx + dy * dy;
 
+        // Interpolate color based on distance from cursor
         let style = baseColor;
         if (dsq <= proxSq) {
           const dist = Math.sqrt(dsq);
@@ -169,6 +175,7 @@ const DotGrid = ({
   }, [buildGrid]);
 
   useEffect(() => {
+    // Track velocity for inertia - dots push in movement direction
     const onMove = e => {
       const now = performance.now();
       const pr = pointerRef.current;
@@ -218,6 +225,7 @@ const DotGrid = ({
       }
     };
 
+    // Click creates ripple - dots push away from click point
     const onClick = e => {
       const rect = canvasRef.current.getBoundingClientRect();
       const cx = e.clientX - rect.left;

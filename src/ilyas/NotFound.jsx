@@ -1,3 +1,7 @@
+/**
+ * 404 page - shown for unknown routes.
+ * Link goes to home (landing) not board.
+ */
 import { Link } from 'react-router-dom';
 
 const NotFound = () => {

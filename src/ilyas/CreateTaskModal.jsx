@@ -1,23 +1,34 @@
+/**
+ * Modal for creating new tasks.
+ * Resets form on close so stale data is not shown when reopened.
+ */
 import { useState } from 'react';
-import { addTask } from '../redux/tasksSlice';
-import { useDispatch } from 'react-redux';
+import { addTask, showNotification } from '../redux/tasksSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectMembers } from "../redux/selectors";
 
+// Shared initial values - used on mount and when closing
+const getInitialFormData = (members) => ({
+  title: '',
+  status: 'todo',
+  priority: 'medium',
+  assigne: members[0]?.name || '',
+  due: new Date().toISOString().split('T')[0],
+  description: '',
+});
+
 const CreateTaskModal = ({ isOpen, onClose }) => {
-  // 1. Redux dispatch and members selector
   const dispatch = useDispatch();
-  const members = selectMembers();
+  const members = useSelector(selectMembers);
 
-  // 2. Form state
-  const [formData, setFormData] = useState({
-    title: '',
-    status: 'todo', // Default value
-    priority: 'medium',
-    assigne: members[0]?.name || '',
-    due: new Date().toISOString().split('T')[0],
-    description: '',
-  });
+  const [formData, setFormData] = useState(() => getInitialFormData(members));
 
+  const handleClose = () => {
+    setFormData(getInitialFormData(members));
+    onClose();
+  };
+
+  // Single handler for all inputs via name attribute
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(task => ({
@@ -33,26 +44,20 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
 
     dispatch(addTask(formData));
 
-    // Reset form
-    setFormData({
-      title: '',
-      description: '',
-      status: 'todo',
-      priority: 'medium',
-      assigne: members[0]?.name || '',
-      due: new Date().toISOString().split('T')[0]
-    });
+    dispatch(showNotification({
+      message: 'New task added successfully!',
+      type: 'success'
+    }));
 
-    onClose();
+    handleClose();
   };
 
-  // If the modal is not open, render nothing
   if (!isOpen) return null;
 
   return (
-    // Modal background overlay
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={handleClose}>
+      {/* Stop propagation so clicking inside modal doesn't close it */}
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
         {/* Header Section */}
         <h3 className="modal-title">Create New Task</h3>
         
@@ -112,7 +117,6 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
                 onChange={handleChange}
                 className="dark-input"
               >
-                {/* Loop 3la members li f Redux */}
                 {members.map(member => (
                   <option key={member.id} value={member.name}>
                     {member.name}
@@ -147,9 +151,9 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
 
           {/* Actions */}
           <div className="modal-actions">
-            <button 
-              type="button" 
-              onClick={onClose} 
+            <button
+              type="button"
+              onClick={handleClose}
               className="btn-cancel"
             >
               Cancel

@@ -1,10 +1,13 @@
-import './team.css'; 
+/**
+ * Team page - member cards with assigned/completed task counts.
+ */
+import './team.css';
+import { useSelector } from 'react-redux';
 import { selectMembers, selectTasks } from '../redux/selectors';
 
 const Team = () => {
-  // Fetch members and tasks from selectors
-  const members = selectMembers();
-  const tasks = selectTasks();
+  const members = useSelector(selectMembers);
+  const tasks = useSelector(selectTasks);
 
   return (
     <div className="team-container">

@@ -1,3 +1,7 @@
+/**
+ * Get Started button - styled with gradient and hover glow.
+ * Wrapped in Link by parent. Uses styled-components for effects.
+ */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -35,6 +39,7 @@ const StyledWrapper = styled.div`
       0px 5px 10px #000000cc;
     text-shadow: 1px 1px 1px #000;
   }
+  /* Glow effect on hover - conic gradient blurred behind button */
   .outer-cont::before {
     content: "";
     position: absolute;

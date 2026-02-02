@@ -1,6 +1,10 @@
+/**
+ * Global styles - typography, header, modals, analytics, footer, toast.
+ * Component-specific styles in taskContainers.css, team.css, landingPage.css.
+ */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -25,7 +29,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .header-left {
@@ -101,7 +105,7 @@ body {
 
 .search-box input:focus {
   border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 .btn-new-task {
@@ -123,9 +127,14 @@ body {
   transform: translateY(-2px);
 }
 
-@media (max-width:768px){
-  .search-box input{display:none;}
-  .header-left{gap:20px;}
+@media (max-width:768px) {
+  .search-box input {
+    display: none;
+  }
+
+  .header-left {
+    gap: 20px;
+  }
 }
 
 /* ================= MODAL ================= */
@@ -133,7 +142,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.7);
+  background: rgba(0, 0, 0, .7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +157,7 @@ body {
   border-radius: 12px;
   width: 650px;
   border: 1px solid #333;
-  box-shadow: 0 20px 50px rgba(0,0,0,.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
 }
 
 .modal-title {
@@ -172,7 +181,9 @@ body {
   margin-bottom: 20px;
 }
 
-.half-width{flex:1;}
+.half-width {
+  flex: 1;
+}
 
 .dark-input {
   width: 100%;
@@ -208,12 +219,31 @@ textarea.dark-input {
   border: none;
 }
 
-.btn-create:hover{background:#4f46e5;}
+.btn-create:hover {
+  background: #4f46e5;
+}
 
 .btn-cancel {
   background: transparent;
   color: #ccc;
   border: 1px solid #333;
+}
+
+.btn-cancel:hover {
+  background: #222;
+}
+
+.btn-delete {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #b91c1c;
 }
 
 /* ================= ANALYTICS ================= */
@@ -227,7 +257,7 @@ textarea.dark-input {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-bottom: 30px;
 }
@@ -247,7 +277,7 @@ textarea.dark-input {
 
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
 }
 
@@ -296,9 +326,11 @@ textarea.dark-input {
   transition: all 0.3s ease;
 }
 
-.btn-home:hover{background:#6d43cf;}
+.btn-home:hover {
+  background: #6d43cf;
+}
 
-/* ================= FOOTER ================= */
+/* ===== FOOTER ===== */
 
 .footer-container {
   background: #050505;
@@ -482,5 +514,91 @@ textarea.dark-input {
 }
 
 .bottom-links a:hover {
+  color: white;
+}
+
+/* ================= TOAST ================= */
+
+.toast-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  /* Jih l'imn lteht */
+  background-color: #1e1e1e;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  z-index: 9999;
+  min-width: 300px;
+
+  /* Animation */
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Success Style */
+.toast-container.success {
+  border-left: 4px solid #2ecc71;
+  /* Green border */
+}
+
+.toast-container.success .toast-icon {
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.1);
+}
+
+/* Error Style (Ila bghiti tsta3mlha mn b3d) */
+.toast-container.error {
+  border-left: 4px solid #e74c3c;
+}
+
+.toast-container.error .toast-icon {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.toast-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.toast-close:hover {
   color: white;
 }

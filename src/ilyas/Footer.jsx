@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
-
+/**
+ * Site footer - brand, links, newsletter placeholder.
+ * Links are placeholders (#). Form submit is prevented.
+ */
 const Footer = () => {
   return (
     <footer className="footer-container">
@@ -45,6 +47,7 @@ const Footer = () => {
           <h4>Stay Updated</h4>
           <p>Get the latest updates and productivity tips.</p>
           <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
+            {/* Placeholder - no backend. preventDefault stops page reload */}
             <input type="email" placeholder="Enter your email" />
             <button type="submit">Subscribe</button>
           </form>

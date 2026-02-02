@@ -1,3 +1,7 @@
+/**
+ * Application entry point.
+ * Mounts the React app with routing, Redux store, and global styles.
+ */
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'

@@ -1,3 +1,7 @@
+/**
+ * Hero section - headline, animated dot grid background, Get Started button.
+ * DotGrid reacts to mouse movement and clicks.
+ */
 import "./landingPage.css";
 import ShinyText from "./shinyText/shinyText.jsx";
 import DotGrid from "./dotGridBg/dotGrid.jsx";

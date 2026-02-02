@@ -1,6 +1,10 @@
+/**
+ * Animated text with moving shine effect.
+ * Uses motion/react for smooth animation. Supports yoyo, pause on hover.
+ */
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react';
-import './ShinyText.css';
+import './shinyText.css';
 
 const ShinyText = ({
   text,
@@ -24,6 +28,7 @@ const ShinyText = ({
   const animationDuration = speed * 1000;
   const delayDuration = delay * 1000;
 
+  // Drive progress (0-100) based on elapsed time. Yoyo reverses at end.
   useAnimationFrame(time => {
     if (disabled || isPaused) {
       lastTimeRef.current = null;
@@ -83,7 +88,7 @@ const ShinyText = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);
 
-  // Transform: p=0 -> 150% (shine off right), p=100 -> -50% (shine off left)
+  // Map progress 0-100 to background position. Shine sweeps left to right.
   const backgroundPosition = useTransform(progress, p => `${150 - p * 2}% center`);
 
   const handleMouseEnter = useCallback(() => {
