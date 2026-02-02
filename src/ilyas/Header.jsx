@@ -1,21 +1,25 @@
 import { useState } from 'react';
 import CreateTaskModal from './CreateTaskModal';
+import { selectSearch } from '../redux/selectors';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import "../../public/taskmanager-pro-logo.png";
+import { useDispatch } from 'react-redux';
+import { setSearchTerm } from '../redux/tasksSlice';
 
 const Header = () => {
   // State to store the search input value
-  const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch();
+  const searchTerm = selectSearch();
   const location = useLocation();
-  const isLandingPage = location.pathname === '/' ;
+  const isLandingPage = location.pathname === '/';
 
   // control the modal visibility
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle search input change
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    e.preventDefault();
+    dispatch(setSearchTerm(e.target.value));
   };
 
   return (
@@ -26,18 +30,16 @@ const Header = () => {
         <div className={isLandingPage ? "header-left-LandingPage" : "header-left"}>
           <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
             <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
-            
           </Link>
           
-
           <nav className="nav-links">
             <Link to="/" className="nav-item">Home</Link>
             <Link to="/board" className="nav-item">Board</Link>
             <Link to="/analysis" className="nav-item">Analysis</Link>
-            <Link to="/team" className="nav-item">Team</Link> 
+            <Link to="/team" className="nav-item">Team</Link>
           </nav>
         </div>
-        
+
         {/* Right section: Search bar and New Task button */}
         <div className={isLandingPage ? "header-right-LandingPage" : "header-right"}>
 
@@ -46,7 +48,7 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search tasks..."
-              value={searchTerm}
+              value={searchTerm || ''}
               onChange={handleSearch}
             />
           </div>
