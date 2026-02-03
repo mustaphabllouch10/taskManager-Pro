@@ -40,14 +40,42 @@
 }
 
 @keyframes intro {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(40px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
+
+
+.Second-section{
+
+    padding: 60px 20px;
+  background: #0b0d10;
+    color: white;
+    text-align: center;
+}
+
+.title-2{
+    animation: intro 1s ease-out forwards;
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.description-2{
+    animation: intro 1.4s ease-out forwards;
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #b5b5b5;
+}
+
+.features-container{
+  animation: intro 1.8s ease-out forwards;
+}
 

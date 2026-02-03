@@ -1,0 +1,64 @@
+.container {
+  background-color: #121212;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  font-weight: 700;
+}
+
+.steps-wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative; /* Needed for the line */
+}
+
+/* The Horizontal Line */
+.line {
+  position: absolute;
+  top: 30px; /* Aligns with the middle of the circles */
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #333;
+  z-index: 0;
+}
+
+.step-item {
+  position: relative;
+  z-index: 1; /* Sits above the line */
+  flex: 1;
+  padding: 0 10px;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.step-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: #888;
+  line-height: 1.4;
+}

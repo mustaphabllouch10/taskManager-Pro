@@ -2,6 +2,8 @@
  * Site footer - brand, links, newsletter placeholder.
  * Links are placeholders (#). Form submit is prevented.
  */
+
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="footer-container">
@@ -9,7 +11,9 @@ const Footer = () => {
         
         {/* Column 1: Brand & Value Proposition */}
         <div className="footer-brand">
-          <h2 className="brand-logo">TaskPro</h2>
+          <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+            <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
+          </Link>
           <p className="brand-desc">
             Boost your team's productivity with the world's most intuitive Kanban solution. 
             Plan, track, and deliver — all in one place.

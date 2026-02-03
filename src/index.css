@@ -31,20 +31,30 @@ body {
   z-index: 100;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+.logo-image{
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.logo-image:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 
 .header-left {
   display: flex;
   align-items: center;
   gap: 40px;
   transition: all 0.3s ease;
+  
+
 }
 
 .header-left-LandingPage {
   display: flex;
   align-items: center;
-  gap: 50%;
   justify-content: space-between;
   transition: all 0.3s ease;
+  width: 57.7%;
 }
 
 .logo-image {
