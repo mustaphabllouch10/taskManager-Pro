@@ -11,7 +11,7 @@ import {Link } from 'react-router-dom';
 const Hero = () => {
     return (
     <div className="hero-section">
-        <div style={{ width: '100%', height: '600px', position: 'relative' }} className="dot-grid-bg">
+        <div style={{ width: '100%', height: '800px', position: 'relative' }} className="dot-grid-bg">
             <DotGrid
                 dotSize={3}
                 gap={15}

@@ -9,6 +9,21 @@ import {
 import { useSelector } from 'react-redux';
 import { selectTasks, selectMembers } from "../redux/selectors";
 
+// Custom Tooltip Component for Glassmorphism effect
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="tooltip-label">{label ? `${label}` : payload[0].name}</p>
+        <p className="tooltip-value">
+          {payload[0].value} Tasks
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Analytics = () => {
   const tasks = useSelector(selectTasks);
   const members = useSelector(selectMembers);
@@ -17,77 +32,93 @@ const Analytics = () => {
   const inProgressCount = tasks.filter(t => t.status === 'inprogress').length;
   const overdueCount = 0;
 
-  // Pie chart data - hide empty slices for cleaner display
+  // Colors Palette
+  const COLORS = ['#3b82f6', '#8b5cf6', '#f59e0b', '#10b981'];
+
   const statusData = [
-    { name: 'To Do', value: tasks.filter(t => t.status === 'todo').length, color: '#FFBB28' }, // Yellow
-    { name: 'In Progress', value: tasks.filter(t => t.status === 'inprogress').length, color: '#3498db' }, // Blue
-    { name: 'Done', value: tasks.filter(t => t.status === 'done').length, color: '#2ecc71' } // Green
+    { name: 'To Do', value: tasks.filter(t => t.status === 'todo').length, color: COLORS[0] },
+    { name: 'In Progress', value: tasks.filter(t => t.status === 'inprogress').length, color: COLORS[1] },
+    { name: 'In Review', value: tasks.filter(t => t.status === 'inreview').length, color: COLORS[2] },
+    { name: 'Done', value: tasks.filter(t => t.status === 'done').length, color: COLORS[3] },
   ].filter(item => item.value > 0);
 
   // Bar chart: tasks assigned per member
   const workloadData = members.map(member => {
     const count = tasks.filter(t => t.assigne === member.name).length;
     return {
-      name: member.name.split(' ')[0], // Display first name only to save space
+      name: member.name,
       tasks: count
     };
   });
 
   return (
     <div className="analytics-container">
-      <h1 className="page-title">Overview</h1>
+      <div className="header-section">
+        <h1 className="page-title">Dashboard Overview</h1>
+        <p className="subtitle">Real-time insights and performance metrics</p>
+      </div>
 
-      {/* Top Stats Cards */}
+      {/* Top Stats Cards with Glow Effect */}
       <div className="stats-grid">
-
-        <div className="stat-card">
+        <div className="stat-card total">
           <div className="stat-info">
             <span className="stat-label">Total Tasks</span>
             <span className="stat-number">{tasks.length}</span>
           </div>
-          <div className="stat-icon icon-green">✓</div>
+          <div className="stat-icon-bg">📊</div>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card done">
           <div className="stat-info">
             <span className="stat-label">Completed</span>
             <span className="stat-number">{completedCount}</span>
           </div>
-          <div className="stat-icon icon-green">✓</div>
+          {/* SVG Icon for Check */}
+          <div className="stat-icon-bg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card progress">
           <div className="stat-info">
             <span className="stat-label">In Progress</span>
             <span className="stat-number">{inProgressCount}</span>
           </div>
-          <div className="stat-icon icon-blue">L</div>
+          {/* SVG Icon for Loader */}
+          <div className="stat-icon-bg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
+          </div>
         </div>
 
-        <div className="stat-card">
+        <div className="stat-card alert">
           <div className="stat-info">
             <span className="stat-label">Overdue</span>
             <span className="stat-number">{overdueCount}</span>
           </div>
-          <div className="stat-icon icon-red">!</div>
+          {/* SVG Icon for Alert */}
+          <div className="stat-icon-bg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
         </div>
       </div>
 
-      {/* --- Charts Section (REAL DATA) --- */}
+      {/* --- Charts Section --- */}
       <div className="charts-grid">
-        
-        {/* Chart 1: Pie Chart for Status */}
+
+        {/* Chart 1: Status Distribution */}
         <div className="chart-card">
-          <h3>Task Status Distribution</h3>
-          <div style={{ width: '100%', height: 250 }}>
-            <ResponsiveContainer>
+          <div className="chart-header">
+            <h3>Status Distribution</h3>
+          </div>
+          <div className="chart-wrapper" style={{ width: '100%', height: '300px', minHeight: '300px' }}>
+            <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={statusData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={80}
+                  innerRadius={70}
+                  outerRadius={100}
                   paddingAngle={5}
                   dataKey="value"
                   stroke="none"
@@ -96,54 +127,59 @@ const Analytics = () => {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#333', border: 'none', borderRadius: '8px', color: '#fff' }}
-                  itemStyle={{ color: '#fff' }}
-                />
+                <Tooltip content={<CustomTooltip />} />
               </PieChart>
             </ResponsiveContainer>
           </div>
-          {/* Legend helper */}
-          <div style={{display:'flex', justifyContent:'center', gap:'15px', fontSize:'0.8rem', color:'#aaa', marginTop:'-20px'}}>
-             {statusData.map(d => (
-                <div key={d.name} style={{display:'flex', alignItems:'center', gap:'5px'}}>
-                    <div style={{width:8, height:8, borderRadius:'50%', background:d.color}}></div>
-                    {d.name}
-                </div>
-             ))}
+          {/* Custom Legend */}
+          <div className="chart-legend">
+            {statusData.map(d => (
+              <div key={d.name} className="legend-item">
+                <span className="dot" style={{ background: d.color }}></span>
+                <span className="legend-text">{d.name}</span>
+                <span className="legend-val">{d.value}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Chart 2: Bar Chart for Workload */}
+        {/* Chart 2: Workload */}
         <div className="chart-card">
-          <h3>Team Workload</h3>
-          <div style={{ width: '100%', height: 250 }}>
-            <ResponsiveContainer>
-              <BarChart data={workloadData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
-                <XAxis 
-                  dataKey="name" 
-                  stroke="#888" 
-                  tick={{fill: '#888'}} 
-                  axisLine={false} 
+          <div className="chart-header">
+            <h3>Team Workload</h3>
+          </div>
+          <div className="chart-wrapper" style={{ width: '100%', height: '300px', minHeight: '300px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={workloadData} barSize={50}>
+                {/* Define Gradient */}
+                <defs>
+                  <linearGradient id="colorTasks" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.3} />
+                  </linearGradient>
+                </defs>
+
+                <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" vertical={false} />
+                <XAxis
+                  dataKey="name"
+                  stroke="#666"
+                  tick={{ fill: '#888', fontSize: 12 }}
+                  axisLine={false}
                   tickLine={false}
+                  dy={10}
                 />
-                <YAxis 
-                  stroke="#888" 
-                  tick={{fill: '#888'}} 
-                  axisLine={false} 
-                  tickLine={false} 
+                <YAxis
+                  stroke="#666"
+                  tick={{ fill: '#888', fontSize: 12 }}
+                  axisLine={false}
+                  tickLine={false}
                   allowDecimals={false}
                 />
-                <Tooltip 
-                   cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                   contentStyle={{ backgroundColor: '#333', border: 'none', borderRadius: '8px', color: '#fff' }}
-                />
-                <Bar 
-                  dataKey="tasks" 
-                  fill="#6366f1" 
-                  radius={[4, 4, 0, 0]} 
-                  barSize={40} 
+                <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
+                <Bar
+                  dataKey="tasks"
+                  fill="url(#colorTasks)" // Use the gradient
+                  radius={[6, 6, 0, 0]}
                 />
               </BarChart>
             </ResponsiveContainer>

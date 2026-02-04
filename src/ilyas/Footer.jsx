@@ -4,77 +4,54 @@
  */
 
 import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className="footer-container">
       <div className="footer-content">
         
         {/* Column 1: Brand & Value Proposition */}
-        <div className="footer-brand">
-          <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
-            <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
-          </Link>
-          <p className="brand-desc">
+        <div className="footer-section brand-section">
+          <div className="brand-header">
+            <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+              <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
+            </Link>
+          </div>
+          <p className="footer-desc">
             Boost your team's productivity with the world's most intuitive Kanban solution. 
             Plan, track, and deliver — all in one place.
           </p>
-          <div className="app-badges">
-            {/* Fake Download Buttons */}
-            <button className="btn-store"> App Store</button>
-            <button className="btn-store">▶ Google Play</button>
-          </div>
+          <p className="copyright">
+            &copy; {new Date().getFullYear()} TaskManagerPro. All rights reserved.
+          </p>
         </div>
 
-        {/* Column 2: Product */}
-        <div className="footer-links-col">
-          <h4>Product</h4>
+        {/* Column 2: Explore */}
+        <div className="footer-section links-section">
+          <h4>Explore</h4>
           <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Enterprise</a></li>
-            <li><a href="#">Roadmap</a></li>
+            <li><Link to="/">Board</Link></li>
+            <li><Link to="/analysis">Analytics</Link></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Report a Bug</a></li>
           </ul>
         </div>
 
-        {/* Column 3: Company & Legal */}
-        <div className="footer-links-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">Careers</a> <span className="hiring-badge">Hiring</span></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
-        </div>
-
-        {/* Column 4: Newsletter */}
-        <div className="footer-newsletter">
-          <h4>Stay Updated</h4>
-          <p>Get the latest updates and productivity tips.</p>
-          <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            {/* Placeholder - no backend. preventDefault stops page reload */}
-            <input type="email" placeholder="Enter your email" />
-            <button type="submit">Subscribe</button>
-          </form>
-          <div className="social-icons">
-            {/* Social Placeholders */}
-            <span>𝕏</span>
-            <span>in</span>
-            <span>IG</span>
-            <span>Gt</span>
+        {/* Column 3: Connect */}
+        <div className="footer-section contact-section">
+          <h4>Connect</h4>
+          <p>Have questions or suggestions?</p>
+          <a href="mailto:contact@taskmanagerpro.com" className="email-link">
+            contact@taskmanagerpro.com
+          </a>
+          
+          <div className="footer-socials">
+            <a href="#" className="social-icon">𝕏</a>
+            <a href="#" className="social-icon">in</a>
+            <a href="#" className="social-icon">Gi</a>
           </div>
         </div>
 
-      </div>
-
-      <div className="footer-bottom">
-        <div className="bottom-content">
-          <p>&copy; 2026 TaskPro Inc. All rights reserved.</p>
-          <div className="bottom-links">
-            <a href="#">Security</a>
-            <a href="#">Sitemap</a>
-            <a href="#">Status</a>
-          </div>
-        </div>
       </div>
     </footer>
   );
