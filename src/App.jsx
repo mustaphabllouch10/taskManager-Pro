@@ -3,15 +3,18 @@
  * Defines routes and renders Header, Footer, and Toast on every page.
  */
 import React, { useEffect } from "react";
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './ilyas/Header'
 import Analytics from './ilyas/Analytics'
 import NotFound from "./ilyas/NotFound";
 import Footer from "./ilyas/Footer";
 import Board from './mustapha/board.jsx';
-import Team  from './azzedine/team.jsx'
+import Team from './azzedine/Team.jsx'
 import LandingPage from './mustapha/landingPage/landingPage.jsx';
 import Toast from './ilyas/Toast.jsx';
+import Signup from './ilyas/Signup.jsx';
+import { selectIsAuthenticated } from './redux/selectors.js';
+import { useSelector } from 'react-redux';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -22,6 +25,16 @@ const ScrollToTop = () => {
   return null;
 };
 
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+
+  if (!isAuthenticated) {
+    return <Navigate to="/signup" replace />;
+  }
+
+  return children;
+};
+
 const App = () => {
   return (
     <div>
@@ -30,9 +43,33 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/board" element={<Board />} />
-        <Route path="/analysis" element={<Analytics />} />
-        <Route path="/team" element={<Team />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/board"
+          element={
+            // <ProtectedRoute>
+              <Board />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analysis"
+          element={
+            // <ProtectedRoute>
+              <Analytics />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/team"
+          element={
+            // <ProtectedRoute>
+              <Team />
+            // </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

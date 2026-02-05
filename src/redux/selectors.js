@@ -7,3 +7,5 @@ export const selectMembers = (state) => state.tasks.members;
 export const selectDraggedTask = (state) => state.tasks.draggedTask;
 export const selectSearch = (state) => state.tasks.searchTerm;
 export const selectNotification = (state) => state.tasks.notification;
+export const selectIsAuthenticated = (state) => state.tasks.isAuthenticated;
+export const selectUser = (state) => state.tasks.user;

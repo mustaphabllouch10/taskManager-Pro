@@ -4,21 +4,32 @@
  */
 import { useState } from 'react';
 import CreateTaskModal from './CreateTaskModal';
-import { selectSearch } from '../redux/selectors';
-import { Link, useLocation } from 'react-router-dom';
+import { selectSearch, selectIsAuthenticated, selectUser } from '../redux/selectors';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchTerm } from '../redux/tasksSlice';
+import { setSearchTerm, logout } from '../redux/tasksSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const searchTerm = useSelector(selectSearch);
+  const navigate = useNavigate();
   const location = useLocation();
-  const isLandingPage = location.pathname === '/';
+  const searchTerm = useSelector(selectSearch);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const user = useSelector(selectUser);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = (e) => {
     dispatch(setSearchTerm(e.target.value));
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path ? "nav-item active" : "nav-item";
   };
 
   return (
@@ -27,40 +38,57 @@ const Header = () => {
 
         {/* Left section: Logo and Navigation */}
         {/* Wider layout on landing page; compact on other routes */}
-        <div className={isLandingPage ? "header-left-LandingPage" : "header-left"}>
+        <div className="header-left">
           <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
             <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
           </Link>
-          
-          <nav className="nav-links">
-            <Link to="/" className="nav-item">Home</Link>
-            <Link to="/board" className="nav-item">Board</Link>
-            <Link to="/analysis" className="nav-item">Analysis</Link>
-            <Link to="/team" className="nav-item">Team</Link>
-          </nav>
+
+          {isAuthenticated && (
+            <nav className="nav-links">
+              <Link to="/board" className={isActive('/board')}>Board</Link>
+              <Link to="/analysis" className={isActive('/analysis')}>Analysis</Link>
+              <Link to="/team" className={isActive('/team')}>Team</Link>
+            </nav>
+          )}
         </div>
 
         {/* Right section: Search bar and New Task button */}
         {/* Search/button hidden on landing (opacity: 0) to avoid clutter */}
-        <div className={isLandingPage ? "header-right-LandingPage" : "header-right"}>
+        <div className="header-right">
+          {isAuthenticated ? (
+            <>
+              {/* Search input field */}
+              <div className="search-box">
+                <input
+                  type="text"
+                  placeholder="Search tasks..."
+                  value={searchTerm || ''}
+                  onChange={handleSearch}
+                />
+              </div>
 
-          {/* Search input field */}
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search tasks..."
-              value={searchTerm || ''}
-              onChange={handleSearch}
-            />
-          </div>
+              {/* Button to open the Create Task modal */}
+              <button
+                className="btn-new-task"
+                onClick={() => setIsModalOpen(true)}
+              >
+                + New Task
+              </button>
 
-          {/* Button to open the Create Task modal */}
-          <button
-            className="btn-new-task"
-            onClick={() => setIsModalOpen(true)}
-          >
-            + New Task
-          </button>
+              {/* User Profile & Logout */}
+              <div className="user-profile">
+                <img src={user.avatar} alt="User" className="user-avatar" />
+                <button className="btn-logout" onClick={handleLogout} title="Logout">
+                  ↪
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="auth-buttons">
+              <div className="btn-login">Log In</div>
+              <Link to="/signup" className="btn-signup">Sign Up</Link>
+            </div>
+          )}
         </div>
       </header>
 

@@ -1,23 +1,61 @@
 .team-container {
-  background-color: #0a0a0a;
+  padding: 2rem;
   min-height: 100vh;
-  padding: 60px 40px;
-  color: #fff;
-  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #121212;
+  color: white;
+  animation: fadeIn 0.4s ease-in;
 }
 
-.team-title {
-  font-size: 36px;
-  font-weight: 700;
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
+/* Form Styles */
+.add-member-form {
+  display: flex;
+  gap: 10px;
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #333;
+}
+
+.add-member-form input,
+.add-member-form select {
+  background: #2a2a2a;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.btn-add-member {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-add-member:hover { background: #4f46e5; }
+
+/* Grid Styles */
 .team-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
 }
 
+/* Card Styles */
 .member-card {
   background-color: #161616;
   border: 1px solid #262626;
@@ -26,11 +64,40 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  min-width: 380px;
-  max-width: 550px;
-  flex: 1 1 380px;
+  min-width: 300px;
+  flex: 1 1 350px;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
+.member-card:hover {
+  border-color: #444;
+  transform: translateY(-2px);
+}
+
+/* Delete Button */
+.delete-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  z-index: 10;
+}
+
+.member-card:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: #ef4444;
+}
+
+/* Avatar Styles */
 .avatar-wrapper {
   width: 72px;
   height: 72px;
@@ -38,15 +105,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 22px;
   position: relative;
+  flex-shrink: 0;
+}
+
+.member-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #262626;
+  object-fit: cover;
 }
 
 .status-dot {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  bottom: 2px;
+  right: 2px;
   width: 14px;
   height: 14px;
   background-color: #22c55e;
@@ -60,8 +134,9 @@
 
 .member-name {
   margin: 0 0 4px 0;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 600;
+  color: white;
   text-transform: capitalize;
 }
 
@@ -72,28 +147,30 @@
   text-transform: capitalize;
 }
 
+/* Stats Styles */
 .stats-container {
   display: flex;
-  gap: 35px;
+  gap: 30px;
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .stat-number {
-  font-size: 24px;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 700;
   margin: 0;
+  color: white;
 }
 
 .stat-label {
   color: #525252;
-  font-size: 11px;
+  font-size: 0.75rem;
   text-transform: uppercase;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .text-green {
