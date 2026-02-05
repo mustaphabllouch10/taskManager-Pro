@@ -12,7 +12,7 @@ import Board from './mustapha/board.jsx';
 import Team from './azzedine/Team.jsx'
 import LandingPage from './mustapha/landingPage/landingPage.jsx';
 import Toast from './ilyas/Toast.jsx';
-import Signup from './ilyas/Signup.jsx';
+import Login from './ilyas/Login.jsx';
 import { selectIsAuthenticated } from './redux/selectors.js';
 import { useSelector } from 'react-redux';
 
@@ -20,7 +20,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname]); 
 
   return null;
 };
@@ -29,7 +29,7 @@ const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/signup" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;
@@ -41,9 +41,10 @@ const App = () => {
       <Header />
       <ScrollToTop />
 
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Protected Routes */}
         <Route

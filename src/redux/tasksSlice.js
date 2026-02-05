@@ -39,15 +39,12 @@ const loadedTasks = loadTasksFromStorage();
 const initialState = {
   // Avoid ID collision: nextTaskId must be > max existing id
   nextTaskId: loadedTasks.length ? Math.max(...loadedTasks.map(t => t.id)) + 1 : 2,
-  // members: [
-  //   { id: 1, name: "ilyas lhouari", role: "manager", color: "#3b82f6" },
-  //   { id: 2, name: "azzeddine belahnine", role: "designer", color: "#d946ef" },
-  //   { id: 3, name: "mustapha bllouch", role: "developer", color: "#f97316" },
-  // ],
   members: [
-    { id: 1, name: "Azzeddine Belahnine", role: "Admin", avatar: "https://ui-avatars.com/api/?name=Azzeddine+Belahnine&background=6366f1&color=fff" },
-    { id: 2, name: "Ilyas Lhouari", role: "Developer", avatar: "https://ui-avatars.com/api/?name=Ilyas+Lhouari&background=10b981&color=fff" },
+    { id: 1, name: "ilyas lhouari", role: "manager", color: "#3b82f6" },
+    { id: 2, name: "azzeddine belahnine", role: "designer", color: "#d946ef" },
+    { id: 3, name: "mustapha bllouch", role: "developer", color: "#f97316" },
   ],
+  
   notification: {
     show: false,
     message: '',

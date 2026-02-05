@@ -50,7 +50,7 @@ const Hero = () => {
                 disabled={false}
             />
             <p className="hero-description">The minimal Kanban board designed for high-velocity teams. Cut through the noise and focus on what matters most—shipping.</p>
-            <Link  to="/signup" style={{ textDecoration: 'none' }}>
+            <Link  to="/login" style={{ textDecoration: 'none' }}>
                 <Button />
             </Link>
 

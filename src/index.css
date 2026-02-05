@@ -933,6 +933,7 @@ textarea.dark-input {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .btn-auth-submit:hover {
