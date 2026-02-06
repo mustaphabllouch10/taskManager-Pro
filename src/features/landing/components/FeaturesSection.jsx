@@ -1,10 +1,5 @@
-import "./features.css";
-import {
-  Move,
-  Users,
-  Flag,
-  BarChart3,
-} from "lucide-react"; // icons (recommended)
+import { Move, Users, Flag, BarChart3 } from "lucide-react"; // icons (recommended)
+import "../styles/hero.css";
 
 const features = [
   {
@@ -47,4 +42,17 @@ function Features() {
   );
 }
 
-export default Features ;
+const SecondSection = () => {
+  return (
+    <div className="Second-section">
+      <p className="title-2">Build for flow state</p>
+      <p className="description-2">Everything you need to manage tasks effectively, without the clutter of traditional project management tools.</p>
+      <div className="features-container">
+        <Features />
+      </div>
+    </div>
+
+  );
+}
+
+export default SecondSection;

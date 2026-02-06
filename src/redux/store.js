@@ -3,7 +3,7 @@
  * Single slice for all app state (tasks, members, notifications, etc).
  */
 import { configureStore } from '@reduxjs/toolkit';
-import tasksReducer, { STORAGE_KEY } from './tasksSlice';
+import tasksReducer, { STORAGE_KEY } from './slices/tasksSlice';
 
 export const store = configureStore({
   reducer: {

@@ -6,7 +6,7 @@ import { useRef, useEffect, useCallback, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
-import './dotGrid.css';
+import '../styles/dotGrid.css';
 
 gsap.registerPlugin(InertiaPlugin);
 

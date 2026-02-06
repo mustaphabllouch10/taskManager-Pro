@@ -4,11 +4,11 @@
  */
 import { useState, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TaskColumn from "./TaskColumn";
-import DeleteConfirmModal from "../ilyas/DeleteConfirmModal";
+import TaskColumn from "../features/board/TaskColumn";
+import DeleteConfirmModal from "../features/board/DeleteConfirmModal";
 import { selectTasks, selectMembers, selectSearch } from "../redux/selectors";
-import { deleteTask, showNotification } from "../redux/tasksSlice";
-import "./taskContainers.css";
+import { deleteTask, showNotification } from "../redux/slices/tasksSlice";
+import "../features/board/TaskContainers.css";
 
 const Board = () => {
   const dispatch = useDispatch();

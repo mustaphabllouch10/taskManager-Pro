@@ -4,7 +4,7 @@
 import { useSelector } from 'react-redux';
 import { selectMembers, selectTasks } from '../redux/selectors';
 import { getInitials } from '../utils/stringUtils';
-import './Team.css';
+import '../styles/team.css';
 
 const Team = () => {
   const members = useSelector(selectMembers);

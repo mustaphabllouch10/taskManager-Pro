@@ -3,11 +3,11 @@
  * Hides search/button on landing page for cleaner hero layout.
  */
 import { useState } from 'react';
-import CreateTaskModal from './CreateTaskModal';
-import { selectSearch, selectIsAuthenticated } from '../redux/selectors';
+import CreateTaskModal from '../../features/board/CreateTaskModal';
+import { selectSearch, selectIsAuthenticated } from '../../redux/selectors';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchTerm, logout } from '../redux/tasksSlice';
+import { setSearchTerm, logout } from '../../redux/slices/tasksSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -54,27 +54,30 @@ const Header = () => {
         </div>
 
         {/* Right section: Search bar and New Task button */}
-        {/* Search/button hidden on landing (opacity: 0) to avoid clutter */}
         <div className="header-right">
           {isAuthenticated ? (
             <>
-              {/* Search input field */}
-              <div className="search-box">
-                <input
-                  type="text"
-                  placeholder="Search tasks..."
-                  value={searchTerm || ''}
-                  onChange={handleSearch}
-                />
-              </div>
+              {location.pathname === '/board' && (
+                <>
+                  {/* Search input field */}
+                  <div className="search-box">
+                    <input
+                      type="text"
+                      placeholder="Search tasks..."
+                      value={searchTerm || ''}
+                      onChange={handleSearch}
+                    />
+                  </div>
 
-              {/* Button to open the Create Task modal */}
-              <button
-                className="btn-new-task"
-                onClick={() => setIsModalOpen(true)}
-              >
-                + New Task
-              </button>
+                  {/* Button to open the Create Task modal */}
+                  <button
+                    className="btn-new-task"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    + New Task
+                  </button>
+                </>
+              )}
 
               {/* User Profile & Logout */}
               <div className="user-profile">

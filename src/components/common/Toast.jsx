@@ -4,8 +4,8 @@
  */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideNotification } from '../redux/tasksSlice';
-import { selectNotification } from '../redux/selectors';
+import { hideNotification } from '../../redux/slices/tasksSlice';
+import { selectNotification } from '../../redux/selectors';
 
 const Toast = () => {
   const dispatch = useDispatch();
@@ -28,8 +28,8 @@ const Toast = () => {
         {notif.type === 'success' ? '✓' : '⚠'}
       </div>
       <p className="toast-message">{notif.message}</p>
-      <button 
-        className="toast-close" 
+      <button
+        className="toast-close"
         onClick={() => dispatch(hideNotification())}
       >
         &times;

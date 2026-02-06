@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/tasksSlice';
+import { login } from '../../redux/slices/tasksSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {

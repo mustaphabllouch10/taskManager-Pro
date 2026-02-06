@@ -4,10 +4,10 @@
  */
 import { useDispatch, useSelector } from "react-redux";
 import { FiCalendar, FiTrash2 } from "react-icons/fi";
-import { updateTaskStatus, setDraggedTask } from "../redux/tasksSlice";
-import { selectDraggedTask } from "../redux/selectors";
-import { getInitials } from "../utils/stringUtils";
-import "./taskContainers.css";
+import { updateTaskStatus, setDraggedTask } from "../../redux/slices/tasksSlice";
+import { selectDraggedTask } from "../../redux/selectors";
+import { getInitials } from "../../utils/stringUtils";
+import "./TaskContainers.css";
 
 const TaskColumn = ({ status, label, tasks, getMemberColor, onRequestDelete }) => {
   const dispatch = useDispatch();

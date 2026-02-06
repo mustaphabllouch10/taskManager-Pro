@@ -3,9 +3,9 @@
  * Resets form on close so stale data is not shown when reopened.
  */
 import { useState } from 'react';
-import { addTask, showNotification } from '../redux/tasksSlice';
+import { addTask, showNotification } from '../../redux/slices/tasksSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMembers } from "../redux/selectors";
+import { selectMembers } from "../../redux/selectors";
 
 // Shared initial values - used on mount and when closing
 const getInitialFormData = (members) => ({
@@ -60,26 +60,26 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         {/* Header Section */}
         <h3 className="modal-title">Create New Task</h3>
-        
+
         <form onSubmit={handleSubmit}>
           {/* Main Title Input (Big input at the top) */}
           <div className="form-group">
-            <input 
-                type="text" 
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="input-title"
-                placeholder="What needs to be done?" 
-                autoFocus
-              />
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="input-title"
+              placeholder="What needs to be done?"
+              autoFocus
+            />
           </div>
 
           {/* Row 1: Status & Priority */}
           <div className="form-row">
             <div className="form-group half-width">
               <label>Status</label>
-              <select 
+              <select
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
@@ -94,7 +94,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
 
             <div className="form-group half-width">
               <label>Priority</label>
-              <select 
+              <select
                 name="priority"
                 value={formData.priority}
                 onChange={handleChange}
@@ -111,7 +111,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
           <div className="form-row">
             <div className="form-group half-width">
               <label>Assignee</label>
-              <select 
+              <select
                 name="assignee"
                 value={formData.assignee}
                 onChange={handleChange}
@@ -127,8 +127,8 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
 
             <div className="form-group half-width">
               <label>Due Date</label>
-              <input 
-                type="date" 
+              <input
+                type="date"
                 name="due"
                 value={formData.due}
                 onChange={handleChange}
@@ -136,10 +136,10 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
               />
             </div>
           </div>
-          
+
           {/* Description */}
           <div className="form-group">
-            <textarea 
+            <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
@@ -159,8 +159,8 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
               Cancel
             </button>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn-create"
             >
               Create Task

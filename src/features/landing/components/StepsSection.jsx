@@ -1,4 +1,4 @@
-import './stepsSection.css';
+import '../styles/stepsSection.css';
 
 const steps = [
   { id: 1, title: 'Create', desc: 'Add tasks in seconds with shortcuts.' },
@@ -11,11 +11,11 @@ const StepsSection = () => {
   return (
     <section className="container">
       <h2 className="title">From Chaos to Clarity</h2>
-      
+
       <div className="steps-wrapper">
         {/* The horizontal line behind the circles */}
         <div className="line"></div>
-        
+
         {steps.map((step) => (
           <div key={step.id} className="step-item">
             <div className="circle">{step.id}</div>

@@ -4,7 +4,7 @@
  */
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react';
-import './shinyText.css';
+import '../styles/shinyText.css';
 
 const ShinyText = ({
   text,
