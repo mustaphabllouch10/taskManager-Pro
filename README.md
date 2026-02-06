@@ -1,6 +1,10 @@
 # TaskManager Pro
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Tailwind/CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-A Kanban-style task management app built with React, Redux, and Vite.
+A Kanban-style task management app .
 
 ## Features
 
@@ -43,54 +47,58 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173)
 
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-### Lint
-
-```bash
-npm run lint
-```
-
 ## Project Structure
 
 ```
 src/
-├── App.jsx              # Root layout, routes
-├── main.jsx             # Entry point
-├── index.css            # Global styles
-├── ilyas/               # Shared components
-│   ├── Header.jsx       # Nav, search, New Task button
-│   ├── CreateTaskModal.jsx
-│   ├── DeleteConfirmModal.jsx
-│   ├── Toast.jsx
-│   ├── Analytics.jsx
-│   ├── Footer.jsx
-│   └── NotFound.jsx
-├── mustapha/            # Board & landing
-│   ├── board.jsx        # Kanban board
-│   ├── TaskColumn.jsx   # Reusable column
-│   ├── taskContainers.css
-│   └── landingPage/
-│       ├── hero.jsx
-│       ├── GetStartedButton.jsx
-│       ├── dotGridBg/   # Interactive dot grid
-│       └── shinyText/   # Shine animation
-├── azzedine/
-│   └── team.jsx         # Team page
-└── redux/
-    ├── store.js
-    ├── tasksSlice.js    # Tasks, members, notifications, search
-    └── selectors.js
+├── App.jsx                          # Root layout, routes
+├── main.jsx                         # Entry point
+├── styles/
+│   ├── index.css                    # Global styles
+│   └── team.css                     # Team page styles
+├── pages/                           # Full-screen page components
+│   ├── LandingPage.jsx
+│   ├── BoardPage.jsx
+│   ├── AnalyticsPage.jsx
+│   ├── TeamPage.jsx
+│   └── NotFoundPage.jsx
+├── components/                      # Shared UI components
+│   ├── layout/
+│   │   ├── Header.jsx               # Nav, search, New Task button
+│   │   └── Footer.jsx
+│   ├── common/
+│   │   ├── ScrollToTop.jsx
+│   │   └── Toast.jsx                # Notification component
+│   └── security/
+│       └── ProtectedRoute.jsx       # Auth guard
+├── features/                        # Feature modules (domain-based)
+│   ├── auth/
+│   │   └── Login.jsx                # Login page
+│   ├── board/                       # Kanban board
+│   │   ├── TaskColumn.jsx           # Reusable column
+│   │   ├── CreateTaskModal.jsx      # New task form
+│   │   ├── DeleteConfirmModal.jsx   # Delete confirmation
+│   │   └── TaskContainers.css
+│   └── landing/                     # Landing page feature
+│       ├── components/
+│       │   ├── Hero.jsx             # Hero section
+│       │   ├── FeaturesSection.jsx  # Features showcase
+│       │   ├── StepsSection.jsx     # Steps to use
+│       │   ├── ShinyText.jsx        # Text animation
+│       │   ├── DotGrid.jsx          # Interactive dot grid
+│       │   └── GetStartedButton.jsx # CTA button
+│       └── styles/
+│           ├── hero.css
+│           ├── shinyText.css
+│           ├── dotGrid.css
+│           └── stepsSection.css
+├── redux/                           # State management
+│   ├── store.js                     # Redux store config
+│   ├── selectors.js                 # State selectors
+│   └── slices/
+│       └── tasksSlice.js            # Tasks, members, notifications, auth
+└── utils/
+    └── stringUtils.js               # Helper functions
 ```
 
 ## Routes
