@@ -13,7 +13,7 @@ const Footer = () => {
         {/* Column 1: Brand & Value Proposition */}
         <div className="footer-section brand-section">
           <div className="brand-header">
-            <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+            <Link to="/" className="logo logo-link">
               <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
             </Link>
           </div>

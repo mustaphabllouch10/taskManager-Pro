@@ -4,7 +4,7 @@
  */
 import { useState } from 'react';
 import CreateTaskModal from './CreateTaskModal';
-import { selectSearch, selectIsAuthenticated, selectUser } from '../redux/selectors';
+import { selectSearch, selectIsAuthenticated } from '../redux/selectors';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchTerm, logout } from '../redux/tasksSlice';
@@ -15,7 +15,6 @@ const Header = () => {
   const location = useLocation();
   const searchTerm = useSelector(selectSearch);
   const isAuthenticated = useSelector(selectIsAuthenticated);
-  const user = useSelector(selectUser);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,8 +23,10 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
     navigate('/');
+    setTimeout(() => {
+      dispatch(logout());
+    }, 100);
   };
 
   const isActive = (path) => {
@@ -39,7 +40,7 @@ const Header = () => {
         {/* Left section: Logo and Navigation */}
         {/* Wider layout on landing page; compact on other routes */}
         <div className="header-left">
-          <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+          <Link to="/" className="logo logo-link">
             <img src="/taskmanager-pro-logo.png" alt="TaskManager Pro Logo" className="logo-image" />
           </Link>
 
@@ -77,7 +78,6 @@ const Header = () => {
 
               {/* User Profile & Logout */}
               <div className="user-profile">
-                <img src={user.avatar} alt="User" className="user-avatar" />
                 <button className="btn-logout" onClick={handleLogout} title="Logout">
                   ↪
                 </button>

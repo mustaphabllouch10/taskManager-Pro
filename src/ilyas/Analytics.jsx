@@ -44,7 +44,7 @@ const Analytics = () => {
 
   // Bar chart: tasks assigned per member
   const workloadData = members.map(member => {
-    const count = tasks.filter(t => t.assigne === member.name).length;
+    const count = tasks.filter(t => t.assignee === member.name).length;
     return {
       name: member.name,
       tasks: count
@@ -110,7 +110,7 @@ const Analytics = () => {
           <div className="chart-header">
             <h3>Status Distribution</h3>
           </div>
-          <div className="chart-wrapper" style={{ width: '100%', height: '300px', minHeight: '300px' }}>
+          <div className="chart-wrapper">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -148,7 +148,7 @@ const Analytics = () => {
           <div className="chart-header">
             <h3>Team Workload</h3>
           </div>
-          <div className="chart-wrapper" style={{ width: '100%', height: '300px', minHeight: '300px' }}>
+          <div className="chart-wrapper">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={workloadData} barSize={50}>
                 {/* Define Gradient */}

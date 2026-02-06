@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FiCalendar, FiTrash2 } from "react-icons/fi";
 import { updateTaskStatus, setDraggedTask } from "../redux/tasksSlice";
 import { selectDraggedTask } from "../redux/selectors";
+import { getInitials } from "../utils/stringUtils";
 import "./taskContainers.css";
 
 const TaskColumn = ({ status, label, tasks, getMemberColor, onRequestDelete }) => {
@@ -56,15 +57,9 @@ const TaskColumn = ({ status, label, tasks, getMemberColor, onRequestDelete }) =
               </div>
               <div
                 className="avatar"
-                style={{ backgroundColor: getMemberColor(task.assigne) }}
+                style={{ backgroundColor: getMemberColor(task.assignee) }}
               >
-                {/* Initials from name. Fallback for undefined/empty assignee */}
-                {(task.assigne || "?")
-                  .split(/\s+/)
-                  .filter(Boolean)
-                  .map((n) => n[0])
-                  .join("")
-                  .toUpperCase() || "?"}
+                {getInitials(task.assignee)}
               </div>
             </div>
           </div>

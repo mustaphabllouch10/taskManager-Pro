@@ -12,7 +12,7 @@ const getInitialFormData = (members) => ({
   title: '',
   status: 'todo',
   priority: 'medium',
-  assigne: members[0]?.name || '',
+  assignee: members[0]?.name || '',
   due: new Date().toISOString().split('T')[0],
   description: '',
 });
@@ -112,8 +112,8 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
             <div className="form-group half-width">
               <label>Assignee</label>
               <select 
-                name="assigne"
-                value={formData.assigne}
+                name="assignee"
+                value={formData.assignee}
                 onChange={handleChange}
                 className="dark-input"
               >

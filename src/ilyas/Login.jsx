@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/tasksSlice';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -14,16 +14,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    
-
     setIsLoading(true);
-
     setTimeout(() => {
-      dispatch(login({
-        name: name,
-        email: email
-      }));
+      dispatch(login({ name, email }));
       navigate('/board');
       setIsLoading(false);
     }, 1000);
@@ -31,7 +24,7 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-card" style={{ maxWidth: '480px' }}>
+      <div className="auth-card auth-card--login">
 
         {/* Header */}
         <div className="auth-header">
@@ -75,17 +68,10 @@ const Login = () => {
             />
           </div>
 
-          
-
-          
-
           <button type="submit" className="btn-auth-submit" disabled={isLoading}>
             {isLoading ? <span className="loader"></span> : 'Log In'}
           </button>
         </form>
-
-        
-
       </div>
     </div>
   );

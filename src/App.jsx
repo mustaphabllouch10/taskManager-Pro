@@ -50,25 +50,25 @@ const App = () => {
         <Route
           path="/board"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Board />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/analysis"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Analytics />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/team"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Team />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route path="*" element={<NotFound />} />

@@ -1,42 +1,51 @@
-.hero-section{
-    background-color: #121212;
-    height: calc(100vh - 67px);
-    position: relative;
-    
+.hero-section {
+  background-color: #121212;
+  height: calc(100vh - 67px);
+  position: relative;
 }
 
-.hero-content{
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-  z-index: 10;         /* higher than bg */
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color : white;
+  color: white;
   padding-top: 10%;
   animation: intro 1s ease-out forwards;
 }
 
-.dot-grid-bg{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; 
-    overflow: hidden;
+.dot-grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.hero-description{
-    animation: intro 1s ease-out forwards;
-    font-size: 21px;
-    margin-top: 20px;
-    text-align: center;
-    max-width: 600px;
-    color: #b5b5b5;
+.hero-dot-grid-wrap {
+  width: 100%;
+  height: 800px;
+  position: relative;
+}
+
+.hero-cta-link {
+  text-decoration: none;
+}
+
+.hero-description {
+  animation: intro 1s ease-out forwards;
+  font-size: 21px;
+  margin-top: 20px;
+  text-align: center;
+  max-width: 600px;
+  color: #b5b5b5;
 }
 
 @keyframes intro {
@@ -44,38 +53,35 @@
     opacity: 0;
     transform: translateY(40px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-
-
-.Second-section{
-
-    padding: 60px 20px;
+.Second-section {
+  padding: 60px 20px;
   background: #0b0d10;
-    color: white;
-    text-align: center;
+  color: white;
+  text-align: center;
 }
 
-.title-2{
-    animation: intro 1s ease-out forwards;
-    font-size: 32px;
-    margin-bottom: 20px;
-    font-weight: bold;
+.title-2 {
+  animation: intro 1s ease-out forwards;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-.description-2{
-    animation: intro 1.4s ease-out forwards;
-    font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #b5b5b5;
+.description-2 {
+  animation: intro 1.4s ease-out forwards;
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #b5b5b5;
 }
 
-.features-container{
+.features-container {
   animation: intro 1.8s ease-out forwards;
 }
-

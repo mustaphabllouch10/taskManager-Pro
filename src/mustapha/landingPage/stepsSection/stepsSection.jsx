@@ -1,5 +1,4 @@
-import React from 'react';
-import './StepsSection.css';
+import './stepsSection.css';
 
 const steps = [
   { id: 1, title: 'Create', desc: 'Add tasks in seconds with shortcuts.' },

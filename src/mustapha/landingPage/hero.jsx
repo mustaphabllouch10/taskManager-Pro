@@ -11,7 +11,7 @@ import {Link } from 'react-router-dom';
 const Hero = () => {
     return (
     <div className="hero-section">
-        <div style={{ width: '100%', height: '800px', position: 'relative' }} className="dot-grid-bg">
+        <div className="dot-grid-bg hero-dot-grid-wrap">
             <DotGrid
                 dotSize={3}
                 gap={15}
@@ -50,7 +50,7 @@ const Hero = () => {
                 disabled={false}
             />
             <p className="hero-description">The minimal Kanban board designed for high-velocity teams. Cut through the noise and focus on what matters most—shipping.</p>
-            <Link  to="/login" style={{ textDecoration: 'none' }}>
+            <Link to="/login" className="hero-cta-link">
                 <Button />
             </Link>
 

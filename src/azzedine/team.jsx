@@ -1,58 +1,40 @@
 /**
  * Team page - member cards with assigned/completed task counts.
  */
-import { useSelector,  } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectMembers, selectTasks } from '../redux/selectors';
+import { getInitials } from '../utils/stringUtils';
 import './Team.css';
 
 const Team = () => {
   const members = useSelector(selectMembers);
   const tasks = useSelector(selectTasks);
 
-
-  
-
   return (
     <div className="team-container">
-      {/* Header & Add Form */}
+      {/* Header */}
       <div className="team-header">
         <div>
           <h1 className="page-title">Team Members</h1>
           <p className="subtitle">Manage your team and permissions.</p>
         </div>
-
-        
       </div>
 
-      {/* Members Grid */}
+      {/* Team Grid */}
       <div className="team-grid">
         {members.map((member) => {
-          const assignedCount = tasks.filter(t => t.assigne === member.name).length;
-          const completedCount = tasks.filter(t => t.assigne === member.name && t.status === "done").length;
+          const assignedCount = tasks.filter((t) => t.assignee === member.name).length;
+          const completedCount = tasks.filter((t) => t.assignee === member.name && t.status === 'done').length;
 
           return (
             <div key={member.id} className="member-card">
-              
-
               <div className="avatar-wrapper">
                 <div
-                className="avatar"
-                style={{ backgroundColor: member.color , 
-                  width: "70px",
-                   height: "70px",
-                    fontSize: "23px" }}
-                         
-                     
-                 
-              >
-                {/* Initials from name. Fallback for undefined/empty assignee */}
-                {(member.name || "?")
-                  .split(/\s+/)
-                  .filter(Boolean)
-                  .map((n) => n[0])
-                  .join("")
-                  .toUpperCase() || "?"}
-              </div>
+                  className="avatar avatar--member"
+                  style={{ backgroundColor: member.color }}
+                >
+                  {getInitials(member.name)}
+                </div>
                 <div className="status-dot"></div>
               </div>
 
