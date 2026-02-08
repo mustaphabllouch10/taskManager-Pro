@@ -7,7 +7,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -16,10 +15,10 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
-      dispatch(login({ name, email }));
+      dispatch(login({ email, password }));
       navigate('/board');
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
 
   return (
@@ -34,17 +33,6 @@ const Login = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="auth-form">
-
-          <div className="form-group">
-            <label>Full Name</label>
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
 
           <div className="form-group">
             <label>Email Address</label>

@@ -55,6 +55,11 @@ const initialState = {
   searchTerm: '',
   isAuthenticated: false,
   user: null,
+  account : [
+    { id: 1, email: "ilyaslhouari@gmail.com" , password : "ilyas123" },
+    { id: 2, email: "azzeddinebelahnine@gmail.com" , password : "azzeddine123" },
+    { id: 3, email: "mustaphabllouch@gmail.com" , password : "mustapha123" },
+  ]
 };
 
 const tasksSlice = createSlice({
@@ -107,17 +112,34 @@ const tasksSlice = createSlice({
 
     // Simulated login action
     login: (state, action) => {
-      state.isAuthenticated = true;
-      state.user = {
-        name: action.payload.name,
-        email: action.payload.email,
-      };
+      const user = state.account.find((user) => user.email === action.payload.email && user.password === action.payload.password);
+      if (user) {
+        state.isAuthenticated = true;
+        state.user = user;
+        state.notification = {
+          show: true,
+          message: 'Login successful',
+          type: 'success',
+        };
+      }
+      else {
+        state.notification = {
+          show: true,
+          message: 'Invalid email or password',
+          type: 'error',
+        };
+      }
     },
 
     // Simulated logout action
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+      state.notification = {
+        show: true,
+        message: 'Logged out successfully',
+        type: 'success',
+      };
     },
   },
 });
@@ -132,6 +154,7 @@ export const {
   hideNotification,
   login,
   logout,
+  account,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
